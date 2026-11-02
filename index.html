@@ -1799,5 +1799,13 @@ button,input,select,textarea,optgroup{font-family:inherit}
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(run); }, { passive: true }); run();
 })();
 </script>
+<style>
+/* people cards with more breathing room: wider gaps between cards, a slightly smaller photo, and more space around the name */
+.people{gap:clamp(22px,2.8vw,44px) !important;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)) !important}
+.people .card{aspect-ratio:16/11;padding:clamp(22px,2.4vw,34px) clamp(26px,3vw,44px) clamp(22px,2.4vw,34px) 49% !important}
+.people .ph-wrap{left:7% !important;height:60% !important}
+/* the name gets more room: a touch smaller, with looser line spacing */
+.people .card h3{font-size:clamp(24px,2.3vw,36px) !important;line-height:1.02 !important}
+</style>
 </body>
 </html>
