@@ -488,8 +488,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
 <footer class="wrap" id="contact" data-net="0.14 0.42 0.33" data-net-m="0.12 0.4 0.36">
   <p class="label" data-kicker="Contact">Email Us, Maybe?</p>
-  <p class="contact">We adore meeting new researchers. <span class="t4">Please reach out!</span></p>
+  <p class="contact">There is something rather wonderful about connecting with people who think similarly to us. <span class="t4">Please take a moment to connect.</span></p>
+  <div class="mail-row">
   <a class="mail" href="https://comm.uic.edu/profiles/taylor-samuel/" target="_blank" rel="noopener"><span class="glink">You can find our email here.</span></a>
+  <a class="mail mail-li" href="https://www.linkedin.com/search/results/people/?keywords=Samuel%20Hardman%20Taylor" target="_blank" rel="noopener"><span class="glink">You can find us on LinkedIn</span></a>
+  </div>
   <a class="apply" href="https://comm.uic.edu/academics/graduate-studies/prospective-students/" target="_blank" rel="noopener">
     <canvas aria-hidden="true"></canvas>
     <span class="ap-kind">Graduate admissions</span>
@@ -1752,6 +1755,10 @@ button,input,select,textarea,optgroup{font-family:inherit}
 #contact .mail:hover,#contact .mail:focus-visible{transform:translateY(-3px) rotate(-1.5deg);filter:brightness(.95)}
 #contact .mail .glink{background:none !important}
 #contact .mail::after{content:"\2197";font-weight:500}
+#contact .mail-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+/* the LinkedIn button: blue with cream type, so it sits beside the gold email button without competing */
+#contact .mail.mail-li{color:var(--cream);background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73)}
+#contact .mail.mail-li:hover,#contact .mail.mail-li:focus-visible{transform:translateY(-3px) rotate(1.5deg)}
 </style>
 <style>
 /* hide the dividing lines touching a highlighted paper, so no thin line shows through the blue */
