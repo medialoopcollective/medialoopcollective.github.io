@@ -1418,7 +1418,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       const markSrc = heroMark.getAttribute('src'); heroMark.src = markSrc.replace('wordmark.svg', 'wordmark-nodot.svg');   // the logo waits for its dot
       document.body.appendChild(cue);
       const lock = document.createElement('div'); lock.id = 'openLock'; lock.setAttribute('aria-label', 'medialoop, a research boutique');
-      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">A Research Collective</div>`;
+      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">A Cozy Research Collective</div>`;
       document.body.appendChild(lock);
       const push = d => { pt = Math.max(.5, clamp(pt + d)); idle = 0; };
       const onWheel = e => push(e.deltaY / (innerHeight * 2.2));
