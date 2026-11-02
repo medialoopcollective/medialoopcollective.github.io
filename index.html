@@ -1783,15 +1783,13 @@ button,input,select,textarea,optgroup{font-family:inherit}
   const wrap = n => { if (n.nodeType === 3) { const f = document.createDocumentFragment();
       n.textContent.split(/(\s+)/).forEach(t => { if (/\S/.test(t)) { const sp = document.createElement('span'); sp.className = 'hw'; sp.textContent = t; f.append(sp); } else f.append(t); }); n.replaceWith(f); }
     else [...n.childNodes].forEach(wrap); };
-  [...lede.childNodes].forEach(wrap);
-  const ws = [...lede.querySelectorAll('.hw')], N = ws.length;
   let raf = 0;
   const run = () => { raf = 0; if (document.documentElement.classList.contains('intro')) return;
     const p = Math.min(1, Math.max(0, scrollY / (innerHeight * .7)));
     h1.style.transform = `translateY(${-p * 60}px) scale(${1 - p * .12}) rotate(${-p * 1.5}deg)`;
     h1.style.opacity = String(1 - p * .55);
-    ws.forEach((w, i) => { const q = Math.min(1, Math.max(0, p * 1.8 - i / N * .8));
-      w.style.transform = `translateY(${-q * 26}px) rotate(${(i % 2 ? 1 : -1) * q * 3}deg)`; w.style.opacity = String(1 - q * .85); }); };
+    // the description moves as one piece: a gentle lift and fade, no word-by-word jiggle
+    lede.style.transform = `translateY(${-p * 30}px)`; lede.style.opacity = String(1 - p * .7); };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(run); }, { passive: true }); run();
 })();
 </script>
