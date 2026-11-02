@@ -729,5 +729,15 @@ button,input,select,textarea,optgroup{font-family:inherit}
   })(t0);
 })();
 </script>
+<style>
+/* publications: hovering a paper inverts the row to blue with cream type (in place of the underline) */
+.pubs a,.r-list a{border-radius:18px;transition:padding .35s ease,background-color .3s,color .3s}
+.pubs a:hover,.pubs a:focus-visible,.r-list a:hover,.r-list a:focus-visible{background:linear-gradient(100deg,#3a6ab6,#2c5494 60%,#24477f);color:var(--cream) !important;padding-left:20px;padding-right:20px}
+.pubs a:hover *,.pubs a:focus-visible *,.r-list a:hover *,.r-list a:focus-visible *{color:var(--cream) !important}
+.pubs a:hover .ttl-main,.pubs a:focus-visible .ttl-main{background-size:0 0 !important}
+.r-list a:hover .r-tm,.r-list a:focus-visible .r-tm{background-size:0 0 !important}
+.pubs a:not([href]):hover{background:none;color:inherit !important;padding-left:0;padding-right:0}
+.pubs a:not([href]):hover *{color:inherit !important}
+</style>
 </body>
 </html>
