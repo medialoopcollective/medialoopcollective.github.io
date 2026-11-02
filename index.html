@@ -220,7 +220,7 @@ a.card{text-decoration:none}
 footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .contact{font-size:var(--step-3);line-height:1.05;letter-spacing:-.02em;margin:0 0 24px;max-width:16ch;text-wrap:balance}
 .mail-note{margin:0 0 6px;font-size:var(--step-0);opacity:.75}
-.mail{display:inline-flex;align-items:center;gap:10px;font-size:var(--step-1);text-decoration:none;user-select:all}
+.mail{display:inline-flex;align-items:center;gap:10px;font-size:var(--step-1);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:5px}
 .mail .arr{color:var(--gold);transition:transform .35s}
 .mail:hover .arr{transform:translate(4px,-4px)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:clamp(80px,14vh,160px);font-size:var(--step--1);border-top:1px solid var(--blue-soft);padding-top:20px}
@@ -326,7 +326,7 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .r-kind::before{content:"";width:.7em;height:.7em;border-radius:52% 46% 50% 48%;background:var(--gold)}
 .r-gold .r-kind::before{background:var(--blue)}
 .r-n{font-size:13px;font-weight:300;letter-spacing:.08em;font-variant-numeric:tabular-nums;opacity:.75}
-.r-name{margin-top:clamp(12px,3vh,36px);font-weight:700;font-size:clamp(40px,6.4vw,104px);line-height:.9;letter-spacing:-.038em;max-width:12ch;text-wrap:balance}
+.r-name{margin-top:clamp(12px,3vh,36px);font-weight:700;font-size:clamp(40px,6.4vw,104px);line-height:1.02;letter-spacing:-.038em;max-width:16ch;text-wrap:balance}
 .r-desc{margin-top:clamp(14px,2vh,22px);font-size:clamp(15px,1.15vw,18px);line-height:1.45;max-width:52ch;opacity:.92}
 .r-go{margin-top:clamp(18px,2.6vh,28px);justify-self:start;font-size:15px;font-weight:600;padding:.6em 1.2em;border-radius:99px;background:color-mix(in srgb,currentColor 14%,transparent);transition:filter .3s,transform .35s cubic-bezier(.3,1.6,.5,1)}
 /* one colour scheme per card colour, shared by the resource cards and the Apply card, and it never changes while you scroll:
@@ -487,10 +487,9 @@ button,input,select,textarea,optgroup{font-family:inherit}
 </div>
 
 <footer class="wrap" id="contact" data-net="0.14 0.42 0.33" data-net-m="0.12 0.4 0.36">
-  <p class="label" data-kicker="Say hello">Contact</p>
+  <p class="label" data-kicker="Contact">Email Us, Maybe?</p>
   <p class="contact">We adore meeting new researchers. <span class="t4">Please reach out!</span></p>
-  <p class="mail-note">You can find our email here.</p>
-  <a class="mail" href="mailto:hello@medialoop.org"><span class="glink">hello@medialoop.org</span></a>
+  <a class="mail" href="https://comm.uic.edu/profiles/taylor-samuel/" target="_blank" rel="noopener"><span class="glink">You can find our email here.</span></a>
   <a class="apply" href="https://comm.uic.edu/academics/graduate-studies/prospective-students/" target="_blank" rel="noopener">
     <canvas aria-hidden="true"></canvas>
     <span class="ap-kind">Graduate admissions</span>
@@ -546,7 +545,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     document.querySelectorAll('.label').forEach(l => {
       const t = document.createElement('span'); t.className = 'lt'; t.textContent = l.textContent.trim(); l.textContent = ''; 
       const b = document.createElement('span'); b.className = 'blob'; l.append(b, t);
-      const st = document.createElement('span'); st.className = 'stop'; st.setAttribute('aria-hidden', 'true'); st.textContent = '.'; l.append(st);
+      const st = document.createElement('span'); st.className = 'stop'; st.setAttribute('aria-hidden', 'true'); st.textContent = '.'; if (!/[?!.]$/.test(t.textContent)) l.append(st);
       if (l.dataset.kicker) { const kk = document.createElement('span'); kk.className = 'kick'; kk.textContent = l.dataset.kicker; l.prepend(kk); }
       io ? io.observe(l) : l.classList.add('on');
     });
@@ -1585,7 +1584,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .ab-card:hover{transform:translateY(-8px);box-shadow:0 30px 40px -26px #1d3866cc}
 .ab-card > canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .ab-card h3{position:relative;margin:0;font-weight:700;font-size:clamp(26px,2.5vw,36px);letter-spacing:-.035em;line-height:1.02}
-.ab-card p{position:relative;margin:12px 0 0;max-width:none;font-size:15.5px;line-height:1.5}
+.ab-card p{position:relative;margin:14px 0 0;max-width:none;font-size:clamp(17px,1.5vw,21px);line-height:1.42;letter-spacing:-.01em}
 .ab-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
 .ab-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .ab-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
