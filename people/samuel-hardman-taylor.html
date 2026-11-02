@@ -680,10 +680,17 @@ button,input,select,textarea,optgroup{font-family:inherit}
 <style>
 /* research interests as two slow rows of coloured tags drifting past each other; the drift follows the page scroll */
 .p-topics{display:none !important}
-.p-marq{display:grid;gap:12px;overflow:hidden;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding:6px 0 10px;
+.p-marq{display:grid;gap:16px;overflow:hidden;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding:6px 0 10px;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .p-marq .row{display:flex;width:max-content;will-change:transform}
-.p-marq span{white-space:nowrap;margin-right:12px;padding:14px 22px;border-radius:18px;font-weight:700;font-size:clamp(15px,1.4vw,19px);letter-spacing:-.018em;line-height:1.15;box-shadow:0 14px 24px -20px #1d386699}
+.p-marq .row{align-items:center}
+.p-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(17px,1.7vw,24px);letter-spacing:-.022em;line-height:1.1;box-shadow:0 14px 24px -20px #1d386699;transform-origin:50% 60%}
+.p-marq .pill.it{font-style:italic}
+.p-marq .gdot{flex:none;width:clamp(11px,1vw,15px);height:clamp(11px,1vw,15px);margin:0 18px 0 4px;background:var(--gold);border-radius:52% 46% 50% 48%/50% 54% 46% 50%}
+/* same as the home page: a little wiggle when the cursor passes over a pill */
+.p-marq .pill:hover{animation:pWiggle .55s cubic-bezier(.3,1.4,.5,1)}
+@keyframes pWiggle{0%{rotate:0deg;scale:1}20%{rotate:-4deg;scale:1.05}40%{rotate:3deg}60%{rotate:-2deg}80%{rotate:1deg}100%{rotate:0deg;scale:1.03}}
+@media (prefers-reduced-motion:reduce){.p-marq .pill:hover{animation:none}}
 .p-marq .c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
 .p-marq .c-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .p-marq .c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
@@ -706,7 +713,10 @@ button,input,select,textarea,optgroup{font-family:inherit}
     const per = Math.ceil(names.length / want);
     rows = Array.from({ length: want }, (_, r) => names.slice(r * per, (r + 1) * per)).filter(s => s.length).map((set, r) => {
       const row = document.createElement('div'); row.className = 'row'; row.setAttribute('aria-hidden', 'true');
-      const one = set.map((n, i) => '<span class="' + PAL[(i + r * per) % PAL.length] + '">' + n + '</span>').join('');
+      // all Inter: each pill its own weight (thin only on darker colours), some italic, and a gold dot after a few
+      const one = set.map((n, i) => { const col = PAL[(i + r * per) % PAL.length], light = /cream|lav|gold/.test(col);
+        let wt = [200, 300, 400, 500, 600, 700, 800, 900][Math.floor(Math.random() * 8)]; if (light && wt < 300) wt = 300;
+        return '<span class="pill ' + col + (Math.random() < .35 ? ' it' : '') + '" style="font-weight:' + wt + '">' + n + '</span>' + (Math.random() < .2 ? '<span class="gdot"></span>' : ''); }).join('');
       row.innerHTML = one.repeat(6); wrap.appendChild(row); return { row, dir: r % 2 ? 1 : -1, w: 0 };
     });
     measure();
