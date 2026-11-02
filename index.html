@@ -940,7 +940,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
   }
   let DPR = 1, W = 0, H = 0;
   function resize() {
-    DPR = Math.min(devicePixelRatio || 1, 1.75);
+    DPR = Math.min(devicePixelRatio || 1, 1.25);   // the soft background net does not need full retina resolution, and this keeps scrolling light
     W = C.width = Math.round(innerWidth * DPR); H = C.height = Math.round(innerHeight * DPR);
     WP = way();
   }
@@ -972,7 +972,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       // the gradient, inside a soft organic glow
       const size = Math.ceil(R * 2.6), q = .5;             // the glow is soft, so half resolution is plenty
       const s2 = Math.ceil(size * q);
-      if (OFF.width !== s2) { OFF.width = OFF.height = ENV.width = ENV.height = s2; }
+      { const cap = Math.ceil(s2 / 96) * 96; if (OFF.width < s2 || OFF.width > cap + 192) { OFF.width = OFF.height = ENV.width = ENV.height = cap; } }   // resize the scratch canvases only in steps, not every frame as the net breathes
       octx.globalCompositeOperation = 'source-over'; octx.clearRect(0, 0, s2, s2);
       // tone-on-tone blue: five blues drift and trade places
       octx.fillStyle = '#3a63a8'; octx.fillRect(0, 0, s2, s2);
@@ -1012,7 +1012,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       }
       octx.globalCompositeOperation = 'destination-in'; octx.drawImage(ENV, 0, 0);
       const SX = cur.sx || 1, SY = cur.sy || 1;
-      ctx.drawImage(OFF, cx - size * SX / 2, cy - size * SY / 2, size * SX, size * SY);
+      ctx.drawImage(OFF, 0, 0, s2, s2, cx - size * SX / 2, cy - size * SY / 2, size * SX, size * SY);
 
       // the net: cream holes, fixed in place, breathing
       if (holes.length) {
@@ -1449,8 +1449,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
         const dt = Math.min(64, now - last); last = now; idle += dt;
         if (idle > 5000) auto = true;                                               // nobody scrolled for 5 seconds: carry on to the home page
         if (auto) pt = clamp(pt + dt / 1300);
-        if (pt > .3) pt = 1;                                                        // once you have clearly scrolled, the opener commits and finishes on its own
-        { const gap = pt - lace.p; lace.p += gap * .2 + (pt === 1 ? Math.min(gap, dt / 320) : 0); }   // ease in, but with a steady minimum pace so there is no slow tail that holds the page
+        if (pt > .6) pt = 1;                                                        // once you have clearly scrolled, the opener commits and finishes on its own
+        { const gap = pt - lace.p; lace.p += gap * .14 + (pt === 1 ? Math.min(gap, dt / 900) : 0); }   // ease in, but with a steady minimum pace so there is no slow tail that holds the page
         if (lace.p > .5 && !handed) { handed = true; intro.on = false; Object.assign(cur, target()); cur.y = (cur.yp - scrollY) / innerHeight; }
         if (lace.p <= .5 && handed) { handed = false; intro.on = true; intro.r = 0; cur.r = 0; }
         const show = ease3(clamp((lace.p - .62) / .3));                                // the page appears as the net gathers
@@ -1476,7 +1476,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
         { const r = heroMark.getBoundingClientRect();                         // sit exactly where the blue logo is ...
           lock.style.left = r.left + 'px'; lock.style.top = r.top + 'px'; lock.style.width = r.width + 'px';
           const k = ease3(clamp((lace.p - .55) / .3)); lock.style.opacity = (1 - k).toFixed(3); }   // ... and, as you swipe, hand over to it in place
-        if (lace.p > .93) { clearTimeout(guard); finish(); return; }
+        if (lace.p > .99) { clearTimeout(guard); finish(); return; }
         requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
