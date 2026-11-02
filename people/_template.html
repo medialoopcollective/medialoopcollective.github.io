@@ -748,7 +748,6 @@ button,input,select,textarea,optgroup{font-family:inherit}
 <style>
 /* publications: hovering a paper inverts the row to blue with cream type (in place of the underline) */
 /* the blue runs the full width of the window, side to side */
-html{overflow-x:clip}
 .pubs a,.r-list a{position:relative;isolation:isolate;transition:padding .35s ease,color .3s}
 .pubs a::before,.r-list a::before{content:"";position:absolute;top:0;bottom:0;left:-100vw;right:-100vw;z-index:-1;background:linear-gradient(100deg,#3a6ab6,#2c5494 50%,#24477f);opacity:0;transition:opacity .3s}
 .pubs a:hover::before,.pubs a:focus-visible::before,.r-list a:hover::before,.r-list a:focus-visible::before{opacity:1}
