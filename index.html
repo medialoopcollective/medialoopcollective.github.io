@@ -1449,8 +1449,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
         const dt = Math.min(64, now - last); last = now; idle += dt;
         if (idle > 5000) auto = true;                                               // nobody scrolled for 5 seconds: carry on to the home page
         if (auto) pt = clamp(pt + dt / 1300);
-        if (pt > .6) pt = 1;                                                        // once you have clearly scrolled, the opener commits and finishes on its own
-        { const gap = pt - lace.p; lace.p += gap * .14 + (pt === 1 ? Math.min(gap, dt / 900) : 0); }   // ease in, but with a steady minimum pace so there is no slow tail that holds the page
+        if (pt > .3) pt = 1;                                                        // once you have clearly scrolled, the opener commits and finishes on its own
+        { const gap = pt - lace.p; lace.p += gap * .2 + (pt === 1 ? Math.min(gap, dt / 320) : 0); }   // ease in, but with a steady minimum pace so there is no slow tail that holds the page
         if (lace.p > .5 && !handed) { handed = true; intro.on = false; Object.assign(cur, target()); cur.y = (cur.yp - scrollY) / innerHeight; }
         if (lace.p <= .5 && handed) { handed = false; intro.on = true; intro.r = 0; cur.r = 0; }
         const show = ease3(clamp((lace.p - .62) / .3));                                // the page appears as the net gathers
@@ -1476,7 +1476,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
         { const r = heroMark.getBoundingClientRect();                         // sit exactly where the blue logo is ...
           lock.style.left = r.left + 'px'; lock.style.top = r.top + 'px'; lock.style.width = r.width + 'px';
           const k = ease3(clamp((lace.p - .55) / .3)); lock.style.opacity = (1 - k).toFixed(3); }   // ... and, as you swipe, hand over to it in place
-        if (lace.p > .99) { clearTimeout(guard); finish(); return; }
+        if (lace.p > .93) { clearTimeout(guard); finish(); return; }
         requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
