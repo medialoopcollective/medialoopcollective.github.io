@@ -739,5 +739,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .pubs a:not([href]):hover{background:none;color:inherit !important;padding-left:0;padding-right:0}
 .pubs a:not([href]):hover *{color:inherit !important}
 </style>
+<style>
+/* hide the dividing lines touching a highlighted paper, so no thin line shows through the blue */
+.pubs li:has(> a:hover),.pubs li:has(> a:focus-visible),.pubs li:has(+ li > a:hover),.pubs li:has(+ li > a:focus-visible),
+.r-list li:has(> a:hover),.r-list li:has(> a:focus-visible),.r-list li:has(+ li > a:hover),.r-list li:has(+ li > a:focus-visible){border-bottom-color:transparent}
+.pubs:has(> li:first-child > a:hover){border-top-color:transparent}
+</style>
 </body>
 </html>

@@ -422,7 +422,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
         <li data-t="journal"><a href="https://doi.org/10.1177/0093650226149487" target="_blank" rel="noopener"><span class="r-type">Journal article</span><span class="r-ttl"><span class="r-tm">Testing hypotheses from the social approval theory of online hate: An analysis of 110 million posts from Parler</span></span><span class="r-meta">Markowitz, D. M., &amp; Taylor, S. H. · Communication Research</span></a></li>
         <li data-t="journal"><a href="https://doi.org/10.1177/2056305126149637" target="_blank" rel="noopener"><span class="r-type">Journal article</span><span class="r-ttl"><span class="r-tm">Exploring the predictors and outcomes of perceived algorithm responsiveness in social media feeds: Combining longitudinal and computational methods</span></span><span class="r-meta">Taylor, S. H., &amp; Markowitz, D. M. · Social Media + Society</span></a></li>
         <li data-t="journal"><a href="https://doi.org/10.1177/00936502261459750" target="_blank" rel="noopener"><span class="r-type">Journal article</span><span class="r-ttl"><span class="r-tm">When the algorithm understands you (or doesn’t): LGBTQ+ youth’s interaction with algorithmic media and identity formation</span></span><span class="r-meta">Chen, Y. A., &amp; Taylor, S. H. · Communication Research</span></a></li>
-        <li data-t="chapter"><a aria-disabled="true"><span class="r-type">Book chapter</span><span class="r-ttl"><span class="r-tm">Bringing people closer together?: Theorizing how algorithms influence interpersonal communication processes and personal relationships</span></span><span class="r-meta">Taylor, S. H., &amp; Choi, M. · The Handbook of Relational and Computer-Mediated Communication</span></a></li>
+        <li data-t="chapter"><a href="https://drive.google.com/file/d/1AyyUXoQU9B7XaKQYyP0gj8sQswGVwjKq/view?usp=drive_link" target="_blank" rel="noopener"><span class="r-type">Book chapter</span><span class="r-ttl"><span class="r-tm">Bringing people closer together?: Theorizing how algorithms influence interpersonal communication processes and personal relationships</span></span><span class="r-meta">Taylor, S. H., &amp; Choi, M. · The Handbook of Relational and Computer-Mediated Communication</span></a></li>
       </ul>
     </section>
     <section class="r-year" data-y="2024">
@@ -758,6 +758,12 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .r-list a:hover .r-tm,.r-list a:focus-visible .r-tm{background-size:0 0 !important}
 .pubs a:not([href]):hover{background:none;color:inherit !important;padding-left:0;padding-right:0}
 .pubs a:not([href]):hover *{color:inherit !important}
+</style>
+<style>
+/* hide the dividing lines touching a highlighted paper, so no thin line shows through the blue */
+.pubs li:has(> a:hover),.pubs li:has(> a:focus-visible),.pubs li:has(+ li > a:hover),.pubs li:has(+ li > a:focus-visible),
+.r-list li:has(> a:hover),.r-list li:has(> a:focus-visible),.r-list li:has(+ li > a:hover),.r-list li:has(+ li > a:focus-visible){border-bottom-color:transparent}
+.pubs:has(> li:first-child > a:hover){border-top-color:transparent}
 </style>
 </body>
 </html>
