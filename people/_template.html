@@ -717,7 +717,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     el.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { o.m -= e.deltaX; e.preventDefault(); } }, { passive: false }); };
 
   const build = () => {
-    const want = innerWidth <= 600 ? 3 : 2; if (want === nRows) return; nRows = want; wrap.innerHTML = '';
+    const want = 3; if (want === nRows) return; nRows = want; wrap.innerHTML = '';
     const per = Math.ceil(names.length / want);
     rows = Array.from({ length: want }, (_, r) => names.slice(r * per, (r + 1) * per)).filter(s => s.length).map((set, r) => {
       const row = document.createElement('div'); row.className = 'row'; row.setAttribute('aria-hidden', 'true');
@@ -764,6 +764,15 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .pubs li:has(> a:hover),.pubs li:has(> a:focus-visible),.pubs li:has(+ li > a:hover),.pubs li:has(+ li > a:focus-visible),
 .r-list li:has(> a:hover),.r-list li:has(> a:focus-visible),.r-list li:has(+ li > a:hover),.r-list li:has(+ li > a:focus-visible){border-bottom-color:transparent}
 .pubs:has(> li:first-child > a:hover){border-top-color:transparent}
+</style>
+<style>
+/* research interests: three rows running edge to edge of the cream area (from the sidebar to the window's right edge) */
+@media (min-width:901px){.p-marq{margin-left:-100vw !important;margin-right:-100vw !important;padding-left:calc(100vw - 20px)}}
+@media (max-width:900px){.p-marq{margin-left:calc(-1 * (var(--gutter) - 16px)) !important;margin-right:calc(-1 * (var(--gutter) - 16px)) !important}}
+/* desktop: a highlighted paper reads as an extension of the blue sidebar, in the sidebar's own colours */
+@media (min-width:901px){
+  .pubs a::before{left:-100vw;right:-100vw;background:linear-gradient(180deg,#3a6ab6 0%,#2c5494 45%,#1f3f73 100%) fixed}
+}
 </style>
 </body>
 </html>
