@@ -366,7 +366,7 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .label{display:block;margin:0 0 clamp(36px,5vw,64px);font-weight:700;font-size:var(--hd,clamp(52px,8vw,124px));line-height:.9;letter-spacing:-.055em;text-wrap:balance}
 .label .blob,.label .ul{display:none}
 .label .lt{padding:0}
-.label .kick{display:flex;width:fit-content;align-items:center;margin-bottom:clamp(12px,1.6vw,20px);padding:.7em 1.25em .72em 1.15em;border-radius:1.5em 2.2em 1.7em 2.5em / 1.8em 1.4em 2.1em 1.5em;background:radial-gradient(120% 140% at 18% 20%,#7a5880 0%,transparent 55%),linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:#f0bb5f;rotate:-1.5deg;font-size:12px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;line-height:1}   /* a small dusky-plum pill, thin cream type */
+.label .kick{display:block;margin-bottom:clamp(10px,1.4vw,18px);color:#57385a;font-size:12px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;line-height:1}   /* dark plum, no background */
 .label .stop{color:var(--gold)}
 .label .lt{display:inline;opacity:0;translate:0 .18em;transition:opacity .7s cubic-bezier(.2,.7,.2,1),translate .8s cubic-bezier(.25,1.35,.4,1)}
 .label .stop{display:inline-block;transform:scale(0);transition:transform .5s .35s cubic-bezier(.3,1.8,.5,1)}
@@ -378,8 +378,6 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .r-year[data-y="In press"] .r-yr{font-size:clamp(48px,6vw,96px);line-height:.9}
 /* every piece of text on the site is Inter */
 button,input,select,textarea,optgroup{font-family:inherit}
-.label:nth-of-type(3n+2) .kick{border-radius:2.3em 1.4em 2.4em 1.6em / 1.3em 2em 1.5em 2.2em;rotate:1deg}   /* kick-shapes: each label's blob is a little different */
-.label:nth-of-type(3n) .kick{border-radius:1.6em 2.5em 1.4em 2.1em / 2.1em 1.5em 2.3em 1.4em;rotate:-.5deg}
 </style>
 <script>
   /* always open a person page at the top (also inside previews that keep an outer scroll position) */
