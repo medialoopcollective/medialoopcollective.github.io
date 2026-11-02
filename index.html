@@ -1809,5 +1809,25 @@ button,input,select,textarea,optgroup{font-family:inherit}
 /* the name gets more room: a touch smaller, with looser line spacing */
 .people .card h3{font-size:clamp(24px,2.3vw,36px) !important;line-height:1.02 !important}
 </style>
+<script>
+/* resource cards: when the stack is done, lift every card away together. A sticky card lets go when its bottom edge
+   meets the end of the stack, and the cards differ in height and stick at different heights, so each one used to leave
+   at a different moment. Each card gets an invisible bottom margin that lines all those bottom edges up (and the next card
+   is pulled up by the same amount, so the stacking itself is unchanged). */
+(() => {
+  const cards = [...document.querySelectorAll('.res-stack .res')]; if (!cards.length) return;
+  const fix = () => {
+    cards.forEach(c => { c.style.marginBottom = ''; c.style.marginTop = ''; });
+    if (getComputedStyle(cards[0]).position !== 'sticky') return;
+    const ends = cards.map(c => parseFloat(getComputedStyle(c).top) + c.offsetHeight), E = Math.max(...ends);
+    cards.forEach((c, i) => { const m = E - ends[i]; c.style.marginBottom = m + 'px'; if (cards[i + 1]) cards[i + 1].style.marginTop = -m + 'px'; });
+  };
+  fix(); addEventListener('resize', fix); document.fonts && document.fonts.ready.then(fix); addEventListener('load', fix);
+})();
+</script>
+<style>
+/* people (and event) cards: swap colour on hover in one step. Fading blue into gold or plum passed through a muddy grey-brown on the way */
+.people .card,.ev{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .4s,color 0s,background-color 0s !important}
+</style>
 </body>
 </html>
