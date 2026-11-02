@@ -114,3 +114,10 @@ On each visit, about one in four people and event cards is quietly picked to lig
 
 ## Typeface
 Every piece of text on the site is Inter (loaded from Google Fonts with the full 100–900 weight range); buttons and form fields inherit it too.
+
+
+## Card colour schemes
+Resource cards and the Apply card share one scheme per colour, and buttons never change colour while you scroll or hover (they only nudge sideways and deepen slightly):
+- Blue, deep blue, plum: cream type, gold dot, gold button with dark type.
+- Gold: dark type, blue dot, blue button with cream type.
+- Lavender, sage, cream: blue type, blue dot, blue button with cream type.
