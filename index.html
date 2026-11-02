@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,100;1,9..144,400..900,100&family=Instrument+Serif:ital@0;1&family=Zilla+Slab:wght@500;700&display=swap">
 <style>
 /* Layout: one long scroll over a Kusama-style net pinned to the window. Its holes stay put and
    breathe; a tone-on-tone blue gradient drifts underneath and travels from section to section. */
@@ -674,7 +675,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     // the word Events: one span per letter so each can hop on hover, like the names on the people pages
     const eh = document.getElementById('events-h');
     if (eh) { const w = eh.textContent.trim(); eh.setAttribute('aria-label', w);
-      eh.innerHTML = w.split(/(\s+)/).map(t => /\S/.test(t) ? `<span style="white-space:nowrap">${[...t].map(c => `<span class="el" aria-hidden="true">${c}</span>`).join('')}</span>` : ' ').join(''); } }
+      eh.innerHTML = '<span class="ev-hl">' + w.split(/(\s+)/).map(t => /\S/.test(t) ? `<span style="white-space:nowrap">${[...t].map(c => `<span class="el" aria-hidden="true">${c}</span>`).join('')}</span>` : ' ').join('') + '</span>'; } }
   function wordBand(time) {
     if (!wTrack) return;
     if (!wb.unit || wTrack.dataset.w !== String(wBand.clientWidth)) {             // fill the band with enough wordmarks to loop seamlessly
@@ -1649,30 +1650,24 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .hm-marq .row{display:flex;width:max-content;will-change:transform}
 .hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.6em 1.05em;border-radius:22px;font-weight:700;font-size:clamp(18px,2vw,28px);letter-spacing:-.025em;line-height:1.1;box-shadow:0 14px 24px -20px #1d386699}
 .hm-marq .pill.fun{font-weight:300;font-style:italic;letter-spacing:-.01em}
-/* party typography: every pill gets its own type treatment, shape and tilt (all Inter) */
-.hm-marq .row{align-items:center;padding-block:6px}
-.hm-marq span.pill{rotate:var(--rt,0deg);border-radius:var(--br,22px);transition:rotate .4s cubic-bezier(.3,1.6,.5,1),scale .4s cubic-bezier(.3,1.6,.5,1)}
-.hm-marq span.pill:hover{rotate:0deg;scale:1.06}
-.hm-marq .ty-heavy{font-weight:900;letter-spacing:-.045em;font-size:clamp(20px,2.3vw,32px)}
-.hm-marq .ty-thin{font-weight:200;letter-spacing:-.03em;font-size:clamp(22px,2.6vw,36px)}
-.hm-marq .pill.ty-caps{font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:clamp(12px,1.1vw,15px);padding:.95em 1.4em}
-.hm-marq .ty-big{font-weight:800;letter-spacing:-.05em;font-size:clamp(26px,3.2vw,46px);padding:.35em .7em}
-.hm-marq .ty-italic{font-weight:500;font-style:italic;letter-spacing:-.02em}
-.hm-marq .ty-mixed b{font-weight:900}.hm-marq .ty-mixed i{font-weight:200;font-style:normal}
-/* little party bits between the pills: gold blobs, hand-drawn stars and squiggles, a cluster of net holes */
-.hm-marq .deco{flex:none;display:grid;place-items:center;margin-right:14px;rotate:var(--rt,0deg)}
-.hm-marq .deco svg{display:block;height:clamp(26px,3vw,44px);width:auto;overflow:visible}
-.hm-marq .deco.spin svg{animation:hmSpin 9s linear infinite}
-@keyframes hmSpin{to{rotate:360deg}}
-.hm-marq .deco.bob svg{animation:hmBob 3.2s ease-in-out infinite}
-@keyframes hmBob{50%{translate:0 -6px}}
-@media (prefers-reduced-motion:reduce){.hm-marq .deco svg{animation:none}}
+/* the playful words get their own display faces (the research interests stay in Inter):
+   a soft, wonky Fraunces, an elegant Instrument Serif italic and a friendly Zilla Slab */
+.hm-marq .row{align-items:center}
+.hm-marq .pill.fun{font-style:normal;letter-spacing:-.01em}
+.hm-marq .f-fraunces{font-family:"Fraunces",Georgia,serif;font-weight:600;font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 72;letter-spacing:-.015em}
+.hm-marq .f-fraunces-bold{font-family:"Fraunces",Georgia,serif;font-weight:800;font-variation-settings:"SOFT" 100,"opsz" 96;letter-spacing:-.02em}
+.hm-marq .f-instrument{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:italic;font-size:clamp(21px,2.35vw,33px);letter-spacing:0}
+.hm-marq .f-slab{font-family:"Zilla Slab",Rockwell,serif;font-weight:700;letter-spacing:0}
 .hm-marq .c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
 .hm-marq .c-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .hm-marq .c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
 .hm-marq .c-cream{background:#e9e2c9;color:var(--blue)}
 .hm-marq .c-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
 .hm-marq .c-plum{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
+/* the events title: cream letters on a deep-blue highlighter band, one band per line, tilted a touch, so it stands out on the gold */
+.ev-h{line-height:1.14 !important;rotate:-1.2deg;transform-origin:left center}
+.ev-h .ev-hl{background:linear-gradient(100deg,#2c5494,#1d3866);color:var(--cream);padding:.02em .22em .08em;border-radius:.16em .3em .2em .26em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;box-shadow:0 18px 30px -22px #1d3866cc}
 </style>
 <script>
 (() => {
@@ -1684,27 +1679,13 @@ button,input,select,textarea,optgroup{font-family:inherit}
   ];
   const PAL = ['c-blue', 'c-gold', 'c-deep', 'c-cream', 'c-lav', 'c-plum'];
   for (let i = PAL.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [PAL[i], PAL[j]] = [PAL[j], PAL[i]]; }
-  const pick = a => a[Math.floor(Math.random() * a.length)];
-  // organic pill shapes, like the blobs elsewhere on the page
-  const BR = ['22px', '999px', '28px 12px 28px 12px', '40% 60% 55% 45% / 60% 45% 55% 40%', '18px 34px 18px 34px', '999px 22px 999px 22px'];
-  // hand-drawn bits in the page colours: a gold blob, a wobbly star, a squiggle, a ring, a cluster of net holes
-  const DECO = [
-    '<svg viewBox="0 0 40 36"><path fill="#e7aa4d" d="M20 2c9 0 18 6 18 15s-8 17-18 17S2 27 2 18 11 2 20 2z"/></svg>',
-    '<svg viewBox="0 0 40 40"><path fill="#e7aa4d" stroke="#e7aa4d" stroke-width="2" stroke-linejoin="round" d="M20 3l4.6 11.2 11.9.6-9.3 7.6 3.2 11.6L20 27.5 9.7 34l3.1-11.6-9.4-7.5 12-.7z"/></svg>',
-    '<svg viewBox="0 0 70 24"><path fill="none" stroke="#2c5494" stroke-width="4.5" stroke-linecap="round" d="M4 15c6-10 11-10 15-2s9 8 14 0 9-9 14-1 9 8 15-1"/></svg>',
-    '<svg viewBox="0 0 40 40"><path fill="none" stroke="#57385a" stroke-width="4" d="M20 5c9.5-.4 15.6 6.3 15 15.4-.5 8.4-7 14.3-15.6 14C11 34 4.8 27.6 5.2 19.4 5.6 11 11.3 5.4 20 5z"/></svg>',
-    '<svg viewBox="0 0 48 40"><circle cx="24" cy="20" r="19" fill="#2c5494"/><ellipse cx="17" cy="15" rx="4.5" ry="4" fill="#f2eedd"/><ellipse cx="29" cy="13" rx="3.5" ry="3.8" fill="#f2eedd"/><ellipse cx="22" cy="26" rx="4" ry="3.6" fill="#f2eedd"/><ellipse cx="33" cy="24" rx="2.8" ry="2.6" fill="#f2eedd"/></svg>',
-    '<svg viewBox="0 0 36 36"><path fill="none" stroke="#e7aa4d" stroke-width="4" stroke-linecap="round" d="M18 4v28M4 18h28M8.5 8.5l19 19M27.5 8.5l-19 19"/></svg>'
-  ];
+  const FONTS = ['f-fraunces', 'f-slab', 'f-instrument', 'f-fraunces-bold'];
+  let f = Math.floor(Math.random() * FONTS.length);
   let k = 0;
   const rows = ROWS.map((set, r) => {
     const row = document.createElement('div'); row.className = 'row';
-    const one = set.map((t, i) => { const fun = t[0] === '*', w = fun ? t.slice(1) : t;
-      const ty = fun ? pick(['ty-big', 'ty-thin', 'ty-caps', 'ty-italic', 'ty-heavy']) : pick(['', '', 'ty-heavy', 'ty-mixed', 'ty-thin']);
-      let txt = w; if (ty === 'ty-mixed') { const sp = w.split(' '); txt = sp.map((x, n) => n % 2 ? '<i>' + x + '</i>' : '<b>' + x + '</b>').join(' '); }
-      const st = '--rt:' + (Math.random() * 6 - 3).toFixed(1) + 'deg;--br:' + pick(BR);
-      const deco = Math.random() < .55 ? '<span class="deco ' + pick(['spin', 'bob', '']) + '" style="--rt:' + (Math.random() * 30 - 15).toFixed(0) + 'deg">' + pick(DECO) + '</span>' : '';
-      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun ' : ' ') + ty + '" style="' + st + '">' + txt + '</span>' + deco; }).join('');
+    const one = set.map(t => { const fun = t[0] === '*', w = fun ? t.slice(1) : t;
+      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun ' + FONTS[f++ % FONTS.length] : '') + '">' + w + '</span>'; }).join('');
     row.innerHTML = one.repeat(5); box.appendChild(row); return { row, dir: r % 2 ? 1 : -1, w: 0, x: Math.random() };
   });
   const measure = () => rows.forEach(o => { o.w = o.row.scrollWidth / 5; });
