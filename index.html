@@ -1653,6 +1653,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .hm-marq .row{align-items:center}
 .hm-marq .pill.fun{font-style:normal;letter-spacing:-.01em}
 .hm-marq .pill.it{font-style:italic}
+/* a little wiggle when the cursor passes over a pill */
+.hm-marq .pill{transform-origin:50% 60%}
+.hm-marq .pill:hover{animation:hmWiggle .55s cubic-bezier(.3,1.4,.5,1)}
+@keyframes hmWiggle{0%{rotate:0deg;scale:1}20%{rotate:-4deg;scale:1.05}40%{rotate:3deg}60%{rotate:-2deg}80%{rotate:1deg}100%{rotate:0deg;scale:1.03}}
+@media (prefers-reduced-motion:reduce){.hm-marq .pill:hover{animation:none}}
 .hm-marq .row.buzz .pill{font-size:clamp(22px,2.6vw,38px);padding:.55em 1.15em;border-radius:28px}
 .hm-marq .gdot{flex:none;width:clamp(12px,1.2vw,18px);height:clamp(12px,1.2vw,18px);margin:0 18px 0 4px;background:var(--gold);border-radius:52% 46% 50% 48%/50% 54% 46% 50%}
 .hm-marq .c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
