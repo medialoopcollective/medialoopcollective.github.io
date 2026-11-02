@@ -420,11 +420,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
   <section id="about" data-net="-0.03 0.0 0.17" data-net-m="-0.1 0.17 0.18" data-net-at="0 0.35">
     <p class="label" data-kicker="About us">A Little About Us</p>
-    <div class="about-grid ab-cards">
-      <article class="ab-card ab-blue"><canvas aria-hidden="true"></canvas><h3>Our approach to research</h3><p>We believe, quite unapologetically, that rigor and playfulness belong together in communication research. In our minds, whimsy, risk, and delight sit happily alongside statistics and meticulous measurement. Our approach says the artisanal quality of scientific research should be celebrated, and joyful research translates onto the page. Good research deserves a bit of pizzazz, and we&rsquo;re happy to supply it.</p></article>
-      <article class="ab-card ab-gold"><canvas aria-hidden="true"></canvas><h3>What keeps us interested</h3><p>There is a nearly endless source of inspiration from the mysteries of communication, technology, and human behavior. Media and communication technologies shape how we think, feel, and connect, and our behaviors shape them back. We study both directions of this exchange. Our questions draw us toward friendships, families and the small, everyday rituals through which connection and identity take form.</p></article>
-      <article class="ab-card ab-deep"><canvas aria-hidden="true"></canvas><h3>How we research</h3><p>We&rsquo;re a collective, because research really is best done with others, typically over a cappuccino or Negroni. Ideas grow warmer and braver, and frankly more interesting, when they are debated with friendly affection. Slow research is our preferred mode. Top-notch methods and data analysis anchor everything. Zeal and cheer keep us going, and we think the work is better for both.</p></article>
-      <article class="ab-card ab-cream"><canvas aria-hidden="true"></canvas><h3>Who is invited to our soir&eacute;es</h3><p>Our curious kin, wherever you come from: scholars and students, engineers and designers, journalists and parents, to name a few. Pull up a chair and let&rsquo;s have a discussion that lasts for hours. We are based just outside of the Loop in Chicago and invite you to stop by when traveling through the city. By some miracle, if you have grant money to share, consider us your captive audience &#128521;</p></article>
+    <div class="about-grid ab-pills">
+      <details class="ab-pill ab-b1" open><canvas aria-hidden="true"></canvas><summary><h3>Our approach to research</h3><span class="pm" aria-hidden="true"></span></summary><p>We believe, quite unapologetically, that rigor and playfulness belong together in communication research. In our minds, whimsy, risk, and delight sit happily alongside statistics and meticulous measurement. Our approach says the artisanal quality of scientific research should be celebrated, and joyful research translates onto the page. Good research deserves a bit of pizzazz, and we&rsquo;re happy to supply it.</p></details>
+      <details class="ab-pill ab-b2"><canvas aria-hidden="true"></canvas><summary><h3>What keeps us interested</h3><span class="pm" aria-hidden="true"></span></summary><p>There is a nearly endless source of inspiration from the mysteries of communication, technology, and human behavior. Media and communication technologies shape how we think, feel, and connect, and our behaviors shape them back. We study both directions of this exchange. Our questions draw us toward friendships, families and the small, everyday rituals through which connection and identity take form.</p></details>
+      <details class="ab-pill ab-b3"><canvas aria-hidden="true"></canvas><summary><h3>How we research</h3><span class="pm" aria-hidden="true"></span></summary><p>We&rsquo;re a collective, because research really is best done with others, typically over a cappuccino or Negroni. Ideas grow warmer and braver, and frankly more interesting, when they are debated with friendly affection. Slow research is our preferred mode. Top-notch methods and data analysis anchor everything. Zeal and cheer keep us going, and we think the work is better for both.</p></details>
+      <details class="ab-pill ab-b4"><canvas aria-hidden="true"></canvas><summary><h3>Who is invited to our soir&eacute;es</h3><span class="pm" aria-hidden="true"></span></summary><p>Our curious kin, wherever you come from: scholars and students, engineers and designers, journalists and parents, to name a few. Pull up a chair and let&rsquo;s have a discussion that lasts for hours. We are based just outside of the Loop in Chicago and invite you to stop by when traveling through the city. By some miracle, if you have grant money to share, consider us your captive audience &#128521;</p></details>
     </div>
   </section>
 </main>
@@ -1577,23 +1577,31 @@ button,input,select,textarea,optgroup{font-family:inherit}
 </script>
 
 <style>
-/* About trio as three cards (blue, gold, deep blue) with the breathing net across the top, kept clear of the words */
-.about-grid.ab-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1100px}
-.about-grid .ab-card{position:relative;overflow:hidden;border-radius:22px;padding:140px 24px 28px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
-  border:0;box-shadow:0 18px 30px -24px #1d386699;transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
-.ab-card:hover{transform:translateY(-8px);box-shadow:0 30px 40px -26px #1d3866cc}
-.ab-card > canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.ab-card h3{position:relative;margin:0;font-weight:700;font-size:clamp(26px,2.5vw,36px);letter-spacing:-.035em;line-height:1.02}
-.ab-card p{position:relative;margin:14px 0 0;max-width:none;font-size:clamp(17px,1.5vw,21px);line-height:1.42;letter-spacing:-.01em}
-.ab-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
-.ab-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
-.ab-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
-.ab-cream{background:#e9e2c9;color:var(--blue)}
-@media (max-width:900px){.about-grid.ab-cards{grid-template-columns:minmax(0,1fr)}.about-grid .ab-card{min-height:0;padding-top:120px}}
+/* About as four unfolding pills, all blue: each a blue gradient, stepping from bright blue to deep blue.
+   The open pill shows a huge net on its right side that keeps clear of the words; the toggle is an organic blob */
+.about-grid.ab-pills{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;max-width:1100px}
+.about-grid .ab-pill{position:relative;overflow:hidden;border-radius:30px;border:0;padding:0;color:var(--cream)}
+.ab-pill > canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ab-pill summary{position:relative;z-index:1;list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px clamp(22px,3vw,34px)}
+.ab-pill summary::-webkit-details-marker{display:none}
+.about-grid .ab-pill h3{margin:0;font-weight:700;font-size:clamp(28px,3.4vw,48px);letter-spacing:-.04em;line-height:1.05}
+.ab-pill > p{position:relative;z-index:1;margin:0;padding:0 clamp(22px,3vw,34px) 32px;max-width:52ch;font-size:clamp(18px,1.7vw,23px);line-height:1.42;letter-spacing:-.01em}
+.ab-b1{background:linear-gradient(100deg,#4775c0,#3a6ab6 55%,#2f5ea6)}
+.ab-b2{background:linear-gradient(100deg,#3a6ab6,#2c5494 60%,#2a5190)}
+.ab-b3{background:linear-gradient(100deg,#2c5494,#24477f 60%,#213f74)}
+.ab-b4{background:linear-gradient(100deg,#24477f,#1d3866 60%,#152b4f)}
+.ab-pill .pm{position:relative;flex:none;width:48px;height:46px;display:grid;place-items:center;background:var(--gold);color:var(--ink);
+  border-radius:63% 37% 54% 46%/42% 61% 39% 58%;animation:abBlob 6s ease-in-out infinite;transition:rotate .45s cubic-bezier(.3,1.6,.5,1),scale .3s}
+.ab-pill .pm::before,.ab-pill .pm::after{content:"";position:absolute;width:15px;height:2.5px;border-radius:2px;background:currentColor}
+.ab-pill .pm::after{rotate:90deg}
+.ab-pill[open] .pm{rotate:45deg}
+.ab-pill summary:hover .pm{scale:1.08}
+@keyframes abBlob{50%{border-radius:40% 60% 38% 62%/60% 40% 62% 38%}}
+@media (prefers-reduced-motion:reduce){.ab-pill .pm{animation:none}}
 </style>
 <script>
 (() => {
-  const pills = [...document.querySelectorAll('.ab-card')]; if (!pills.length || !window.NET_HOLES) return;
+  const pills = [...document.querySelectorAll('.ab-pill')]; if (!pills.length || !window.NET_HOLES) return;
   const N = NET_HOLES, T = N.tile, SC = N.scale;
   const H = N.holes.map(h => { const pts = []; for (let i = 2; i < h.length; i += 2) pts.push([h[i] / SC, h[i + 1] / SC]);
     const p = new Path2D(), n = pts.length, m = i => [(pts[i % n][0] + pts[(i + 1) % n][0]) / 2, (pts[i % n][1] + pts[(i + 1) % n][1]) / 2];
@@ -1604,20 +1612,21 @@ button,input,select,textarea,optgroup{font-family:inherit}
   let boxes = new Map();
   // measure the actual words (title, toggle and paragraph lines) so the holes stay clear of them
   const measure = () => pills.forEach(d => { const r = d.getBoundingClientRect(), out = [];
-    d.querySelectorAll('h3, p').forEach(e => { const rg = document.createRange(); rg.selectNodeContents(e);
-      [...rg.getClientRects()].forEach(b => out.push([b.left - r.left, b.top - r.top, b.right - r.left, b.bottom - r.top])); });
+    d.querySelectorAll('h3, .pm, :scope > p').forEach(e => { const rg = document.createRange(); rg.selectNodeContents(e);
+      [...(e.classList.contains('pm') ? [e.getBoundingClientRect()] : rg.getClientRects())].forEach(b => out.push([b.left - r.left, b.top - r.top, b.right - r.left, b.bottom - r.top])); });
     boxes.set(d, out); });
+  pills.forEach(d => d.addEventListener('toggle', () => requestAnimationFrame(measure)));
   addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure); measure();
   function draw(t) {
-    pills.forEach((d, j) => { const c = d.querySelector('canvas'); const r = d.getBoundingClientRect();
+    pills.forEach((d, j) => { const c = d.querySelector('canvas'); if (!d.open) return; const r = d.getBoundingClientRect();
       if (r.bottom < 0 || r.top > innerHeight) return; const dp = Math.min(2, devicePixelRatio || 1), W = r.width, Ht = r.height;
       if (c.width !== Math.round(W * dp) || c.height !== Math.round(Ht * dp)) { c.width = Math.round(W * dp); c.height = Math.round(Ht * dp); }
-      const g = c.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height); g.fillStyle = d.classList.contains('ab-cream') ? 'rgba(44,84,148,.85)' : 'rgba(242,238,221,.9)';
-      const k = W / 800, ox = -j * 70, bx = boxes.get(d) || [];
+      const g = c.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height); g.fillStyle = 'rgba(242,238,221,.9)';
+      const k = W < 600 ? 1.5 : 2.6, ox = -j * 140 - 40, bx = boxes.get(d) || [];
       for (let ty = -1; ty * T * k < Ht + T * k; ty++) for (let tx = -1; tx * T * k < W + T * k; tx++) for (const h of H) {
         const x = ox + (tx * T + h.cx) * k, y = (ty * T + h.cy) * k; if (x < -30 || y < -30 || x > W + 30 || y > Ht + 30) continue;
-        let f = ss(1 - y / (Ht * .5));
-        for (const [x0, y0, x1, y1] of bx) { const dx = Math.max(0, x0 - x, x - x1), dy = Math.max(0, y0 - y, y - y1); f *= ss((Math.hypot(dx, dy) - 6) / 26); }
+        let f = ss((x / W - .4) / .3);
+        for (const [x0, y0, x1, y1] of bx) { const dx = Math.max(0, x0 - x, x - x1), dy = Math.max(0, y0 - y, y - y1); f *= ss((Math.hypot(dx, dy) - (W < 600 ? 22 : 10)) / 30); }
         if (f < .05) continue; const s = k * .82 * Math.min(1, f * 1.2) * (still ? 1 : .88 + .12 * Math.sin(t * .9 + h.ph));
         g.setTransform(dp * s, 0, 0, dp * s, dp * x, dp * y); g.fill(h.p); } });
     requestAnimationFrame(draw2);
