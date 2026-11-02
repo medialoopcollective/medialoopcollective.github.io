@@ -1647,6 +1647,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .marquee.hm-marq{height:auto !important;display:grid;gap:16px;padding:clamp(56px,8vw,110px) 0;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .hm-marq .row{display:flex;width:max-content;will-change:transform}
+.hm-marq .row{touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.hm-marq .row.grabbing{cursor:grabbing}
 .hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(19px,2.15vw,30px);letter-spacing:-.025em;line-height:1.1;box-shadow:0 14px 24px -20px #1d386699}
 .hm-marq .pill.fun{font-weight:300;font-style:italic;letter-spacing:-.01em}
 /* all Inter: every pill gets its own weight (100 to 900), some upright and some italic; a few gold dots sit between words */
@@ -1655,7 +1657,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .hm-marq .pill.it{font-style:italic}
 /* a little wiggle when the cursor passes over a pill */
 .hm-marq .pill{transform-origin:50% 60%}
-.hm-marq .pill:hover{animation:hmWiggle .55s cubic-bezier(.3,1.4,.5,1)}
+/* each pill wiggles its own way: a tilt, a hop or a jelly squish, with its own strength and speed (set per pill in the script) */
+@keyframes wgTilt{0%{rotate:0deg;scale:1}20%{rotate:calc(var(--a,4) * -1deg);scale:1.05}40%{rotate:calc(var(--a,4) * .75deg)}60%{rotate:calc(var(--a,4) * -.5deg)}80%{rotate:calc(var(--a,4) * .25deg)}100%{rotate:0deg;scale:1.03}}
+@keyframes wgHop{0%{translate:0 0}25%{translate:0 calc(var(--a,4) * -1.6px);rotate:calc(var(--a,4) * .4deg)}50%{translate:0 0}70%{translate:0 calc(var(--a,4) * -.6px);rotate:calc(var(--a,4) * -.3deg)}100%{translate:0 0;rotate:0deg}}
+@keyframes wgJelly{0%{scale:1 1}25%{scale:calc(1 + var(--a,4) * .02) calc(1 - var(--a,4) * .018)}50%{scale:calc(1 - var(--a,4) * .012) calc(1 + var(--a,4) * .014)}75%{scale:calc(1 + var(--a,4) * .006) calc(1 - var(--a,4) * .005)}100%{scale:1.02 1.02}}
+.hm-marq .pill:hover{animation:var(--wn,wgTilt) var(--wd,.55s) cubic-bezier(.3,1.4,.5,1)}
 @keyframes hmWiggle{0%{rotate:0deg;scale:1}20%{rotate:-4deg;scale:1.05}40%{rotate:3deg}60%{rotate:-2deg}80%{rotate:1deg}100%{rotate:0deg;scale:1.03}}
 @media (prefers-reduced-motion:reduce){.hm-marq .pill:hover{animation:none}}
 .hm-marq .row.buzz .pill{font-size:clamp(22px,2.6vw,38px);padding:.55em 1.15em;border-radius:28px}
@@ -1697,9 +1703,17 @@ button,input,select,textarea,optgroup{font-family:inherit}
       // the thinnest weights only on the darker pills, so they stay readable
       let wt = pick(fun ? WTB : WT); if (light && wt < 300) wt = 300; const it = Math.random() < .35;
       const dot = Math.random() < .18 ? '<span class="gdot" aria-hidden="true"></span>' : '';
-      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun' : '') + (it ? ' it' : '') + '" style="font-weight:' + wt + '">' + w + '</span>' + dot; }).join('');
+      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun' : '') + (it ? ' it' : '') + '" style="font-weight:' + wt + ';--a:' + (2 + Math.random() * 5).toFixed(1) + ';--wd:' + (.4 + Math.random() * .5).toFixed(2) + 's;--wn:' + ['wgTilt', 'wgHop', 'wgJelly'][Math.floor(Math.random() * 3)] + '">' + w + '</span>' + dot; }).join('');
     row.innerHTML = one.repeat(5); box.appendChild(row); return { row, dir: r % 2 ? 1 : -1, w: 0, x: Math.random() };
   });
+  // let people drag or swipe a row left and right (and use a trackpad's sideways scroll); vertical page scrolling still works
+  const grab = o => { const el = o.row; o.m = o.m || 0; let sx = 0, sm = 0, id = null;
+    el.addEventListener('pointerdown', e => { id = e.pointerId; sx = e.clientX; sm = o.m; o.drag = true; el.setPointerCapture(id); el.classList.add('grabbing'); });
+    el.addEventListener('pointermove', e => { if (e.pointerId === id) o.m = sm + (e.clientX - sx); });
+    const end = e => { if (e.pointerId !== id) return; id = null; o.drag = false; el.classList.remove('grabbing'); };
+    el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+    el.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { o.m -= e.deltaX; e.preventDefault(); } }, { passive: false }); };
+  rows.forEach(grab);
   const measure = () => rows.forEach(o => { o.w = o.row.scrollWidth / 5; });
   measure(); addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure);
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1708,8 +1722,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     v += (Math.abs(scrollY - sy) - v) * .1; sy = scrollY;          // smoothed scroll speed, in px per frame
     const speed = still ? 0 : 16 + v * 9;                            // a slow 16px a second at rest, faster while you scroll
-    rows.forEach(o => { if (!o.w) return; o.x = (o.x * o.w + speed * dt) / o.w % 1;
-      const px = o.x * o.w; o.row.style.transform = 'translateX(' + (o.dir < 0 ? -px - o.w : px - 2 * o.w) + 'px)'; });
+    rows.forEach(o => { if (!o.w) return; if (!o.drag) o.x = ((o.x * o.w + speed * dt) / o.w % 1 + 1) % 1;
+      const px = (((o.x * o.w + (o.dir < 0 ? -o.m : o.m)) % o.w) + o.w) % o.w; o.row.style.transform = 'translateX(' + (o.dir < 0 ? -px - o.w : px - 2 * o.w) + 'px)'; });
     requestAnimationFrame(tick);
   })(last);
 })();
