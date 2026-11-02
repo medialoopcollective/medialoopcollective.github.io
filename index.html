@@ -310,8 +310,8 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .r-blue2{background:linear-gradient(200deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
 .r-egg{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}   /* dusky plum */
 .r-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}   /* lavender mist */
-.r-sorbet{background:linear-gradient(160deg,#e1ec98,#d6e486 55%,#c0cf68);color:var(--ink)}   /* sorbet chartreuse */
-.r-sorbet .r-kind::before{background:var(--blue)}
+.r-sage{background:linear-gradient(160deg,#d8de9c,#ccd389 55%,#b5bd6c);color:var(--ink)}   /* sage chartreuse */
+.r-sage .r-kind::before{background:var(--blue)}
 .r-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .r-cream{background:#e9e2c9;color:var(--blue)}
 .r-ink{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
@@ -352,6 +352,16 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .ap-t{margin-top:clamp(16px,2.4vh,26px);max-width:50ch;font-size:clamp(16px,1.25vw,19px);line-height:1.45;color:var(--ink)}
 .ap-go{margin-top:clamp(20px,3vh,30px);font-size:15px;font-weight:600;padding:.65em 1.3em;border-radius:99px;background:var(--blue);color:var(--cream);transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .3s}
 .apply:hover .ap-go,.apply:focus-visible .ap-go{transform:translateX(4px);background:var(--ink)}
+/* the Apply card takes a random colour from the palette on each visit (set in the script) */
+.apply.a-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
+.apply.a-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
+.apply.a-plum{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
+.apply.a-blue .ap-t,.apply.a-deep .ap-t,.apply.a-plum .ap-t{color:var(--cream);opacity:.92}
+.apply.a-blue .ap-kind::before,.apply.a-deep .ap-kind::before,.apply.a-plum .ap-kind::before{background:var(--gold)}
+.apply.a-blue .ap-go,.apply.a-deep .ap-go,.apply.a-plum .ap-go{background:var(--gold);color:var(--ink)}
+.apply.a-blue:hover .ap-go,.apply.a-deep:hover .ap-go,.apply.a-plum:hover .ap-go{background:var(--cream);color:var(--ink)}
+.apply.a-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0)}
+.apply.a-sage{background:linear-gradient(160deg,#d8de9c,#ccd389 55%,#b5bd6c)}
 @media (prefers-reduced-motion:reduce){.apply,.ap-go{transition:none}}
 
 /* section headings: a small kicker with a gold dot above a big, bold, tight heading that ends in a gold full stop
@@ -369,7 +379,7 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 
 /* a small surprise: on each visit a few cards light up in lavender or plum instead of their usual hover colour */
 .people .card.s-lav:hover,.ev.s-lav:hover{background-color:#bfb1d2;background-image:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
-.people .card.s-chart:hover,.ev.s-chart:hover{background-color:#d6e486;background-image:linear-gradient(160deg,#e1ec98,#d6e486 55%,#c0cf68);color:var(--ink)}
+.people .card.s-chart:hover,.ev.s-chart:hover{background-color:#ccd389;background-image:linear-gradient(160deg,#d8de9c,#ccd389 55%,#b5bd6c);color:var(--ink)}
 .people .card.s-plum:hover,.ev.s-plum:hover{background-color:#57385a;background-image:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
 .pubs a:not([href]){cursor:default}
 /* every piece of text on the site is Inter */
@@ -472,7 +482,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       <a class="res r-gold" href="https://osf.io/uvwr6/" target="_blank" rel="noopener" style="--i:1"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Open materials</span><span class="r-mini" aria-hidden="true">Open Science Framework</span><span class="r-n">02 / 06</span></span><span class="r-name">Open Science Framework</span><span class="r-desc">For many studies you can find the preregistration, survey or experiment materials, data and code on the Open Science Framework. If you are looking for a specific scale or procedure, start on OSF.</span><span class="r-go">Go to OSF</span></a>
       <a class="res r-ink" href="https://github.com/cornellsml/truman" target="_blank" rel="noopener" style="--i:2"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Experiment platform</span><span class="r-mini" aria-hidden="true">Truman</span><span class="r-n">03 / 06</span></span><span class="r-name">Truman</span><span class="r-desc">A social media simulation: a fake social networking site where participants are randomly assigned to conditions when they sign up, and interact with pre-programmed bots the researcher controls. Everything needed to replicate our experiments or run your own is on GitHub. Using Truman takes technical skills, especially JavaScript; more is in our CHI and CSCW papers.</span><span class="r-go">View on GitHub</span></a>
       <a class="res r-lav" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:3"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Talks</span><span class="r-mini" aria-hidden="true">Presentations</span><span class="r-n">04 / 06</span></span><span class="r-name">Presentations</span><span class="r-desc">A folder of slides from past conference presentations, colloquiums and job talks.</span><span class="r-go">Open the folder</span></a>
-      <a class="res r-sorbet" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:4"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Posters</span><span class="r-mini" aria-hidden="true">Posters</span><span class="r-n">05 / 06</span></span><span class="r-name">Posters</span><span class="r-desc">Academic posters from past conference presentations, ready to view or download.</span><span class="r-go">Open the folder</span></a>
+      <a class="res r-sage" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:4"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Posters</span><span class="r-mini" aria-hidden="true">Posters</span><span class="r-n">05 / 06</span></span><span class="r-name">Posters</span><span class="r-desc">Academic posters from past conference presentations, ready to view or download.</span><span class="r-go">Open the folder</span></a>
       <a class="res r-egg" href="https://drive.google.com/drive/folders/1Q8nxloq3sJVYmZVH6bLl9iFaxhOrnXH9?usp=sharing" target="_blank" rel="noopener" style="--i:5"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Papers</span><span class="r-mini" aria-hidden="true">Research publications</span><span class="r-n">06 / 06</span></span><span class="r-name">Research publications</span><span class="r-desc">Pre-print PDFs of some harder-to-find and in-press articles, such as book chapters. Email Sam for access to any other article.</span><span class="r-go">Open the folder</span></a>
     </div>
   </section>
@@ -1490,7 +1500,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
         card.classList.toggle('covered', cover > .3);
         const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(r.width * dpr), h = Math.round(r.height * dpr); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
         const g = cv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, w, h);
-        g.fillStyle = card.classList.contains('r-cream') || card.classList.contains('r-lav') || card.classList.contains('r-sorbet') ? 'rgba(44,84,148,.85)' : card.classList.contains('r-gold') ? 'rgba(242,238,221,.88)' : 'rgba(242,238,221,.9)';
+        g.fillStyle = card.classList.contains('r-cream') || card.classList.contains('r-lav') || card.classList.contains('r-sage') ? 'rgba(44,84,148,.85)' : card.classList.contains('r-gold') ? 'rgba(242,238,221,.88)' : 'rgba(242,238,221,.9)';
         const boxes = [...card.querySelectorAll('.r-name, .r-desc, .r-go, .r-kind, .r-n')].map(e => { const b = e.getBoundingClientRect(); return [(b.left - r.left) * dpr, (b.top - r.top) * dpr, (b.right - r.left) * dpr, (b.bottom - r.top) * dpr]; });
         const NS = NETS[n % NETS.length], T = (isMobile() ? 700 : 1000) * dpr * NS.k, k = T / TILE, ox = n * 137 * dpr, mob = isMobile(), asp = w / h;
         for (let ty = -1; ty * T < h + T; ty++) for (let tx = -1; tx * T < w + T; tx++) for (const hh of holes) {
@@ -1517,9 +1527,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
   /* the Apply card: breathing cream net on its right side, clear of the words */
   { const ap = document.querySelector('.apply'), cv = ap && ap.querySelector('canvas');
+    const AC = ['a-gold', 'a-blue', 'a-deep', 'a-plum', 'a-lav', 'a-sage'], ac = AC[Math.floor(Math.random() * AC.length)]; if (ap) ap.classList.add(ac);
+    const apInk = ['a-lav', 'a-sage'].includes(ac) ? 'rgba(44,84,148,.85)' : 'rgba(242,238,221,.9)';
     const drawAp = time => { if (!cv || !holes.length) return; const r = ap.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
       const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(r.width * dpr), h = Math.round(r.height * dpr); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-      const g = cv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, w, h); g.fillStyle = 'rgba(242,238,221,.9)';
+      const g = cv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, w, h); g.fillStyle = apInk;
       const T = (isMobile() ? 700 : 1000) * dpr, k = T / TILE, mob = isMobile();
       for (let ty = -1; ty * T < h + T; ty++) for (let tx = -1; tx * T < w + T; tx++) for (const hh of holes) {
         const x = (tx * TILE + hh.cx) * k, y = (ty * TILE + hh.cy) * k; if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
