@@ -696,6 +696,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .p-marq .c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
 .p-marq .c-cream{background:#e9e2c9;color:var(--blue)}
 .p-marq .c-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
+.p-marq .c-sage{background:linear-gradient(160deg,#d8de9c,#ccd389 55%,#b5bd6c);color:var(--ink)}
 .p-marq .c-plum{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
 </style>
 <script>
@@ -722,7 +723,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     rows = Array.from({ length: want }, (_, r) => names.slice(r * per, (r + 1) * per)).filter(s => s.length).map((set, r) => {
       const row = document.createElement('div'); row.className = 'row'; row.setAttribute('aria-hidden', 'true');
       // all Inter: each pill its own weight (thin only on darker colours), some italic, and a gold dot after a few
-      const one = set.map((n, i) => { const col = PAL[(i + r * per) % PAL.length], light = /cream|lav|gold/.test(col);
+      const one = set.map((n, i) => { const col = Math.random() < .04 ? 'c-sage' : PAL[(i + r * per) % PAL.length], light = /cream|lav|gold|sage/.test(col);
         let wt = [200, 300, 400, 500, 600, 700, 800, 900][Math.floor(Math.random() * 8)]; if (light && wt < 300) wt = 300;
         return '<span class="pill ' + col + (Math.random() < .35 ? ' it' : '') + '" style="font-weight:' + wt + ';--a:' + (2 + Math.random() * 5).toFixed(1) + ';--wd:' + (.4 + Math.random() * .5).toFixed(2) + 's;--wn:' + ['wgTilt', 'wgHop', 'wgJelly'][Math.floor(Math.random() * 3)] + '">' + n + '</span>' + (Math.random() < .2 ? '<span class="gdot"></span>' : ''); }).join('');
       row.innerHTML = one.repeat(6); wrap.appendChild(row); const o = { row, dir: r % 2 ? 1 : -1, w: 0, m: 0 }; grab(o); return o;
