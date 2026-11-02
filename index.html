@@ -105,7 +105,7 @@ html.intro.intro-out .top,html.intro.intro-out .hero .lede,html.intro.intro-out 
 .hero{min-height:92vh;display:grid;align-content:end;padding-block:120px 8vh}
 .hero h1{margin:0;width:min(64vw,880px)}
 .hero h1 img{width:100%;height:auto}
-.hero .lede{margin:clamp(20px,3vw,36px) 0 0;max-width:30ch;font-size:var(--step-1);line-height:1.35}
+.hero .lede{margin:clamp(20px,3vw,36px) 0 0;max-width:44ch;font-size:var(--step-1);line-height:1.35}
 .scroll-cue{margin-top:clamp(28px,5vh,56px);display:flex;align-items:center;gap:12px;font-size:var(--step--1);letter-spacing:.08em;text-transform:uppercase}
 .scroll-cue span{width:42px;height:2px;background:var(--gold);transform-origin:left;animation:cue 2.4s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
@@ -180,7 +180,7 @@ a.card{text-decoration:none}
 .card:hover .ph-wrap{transform:translateY(-50%) scale(1.06) rotate(calc(var(--hr,1.5deg) * -2))}
 /* name and role sit to the right of the photo */
 .people .card{justify-content:center;padding-left:54%}
-.people .card h3{text-wrap:balance}
+.people .card h3{text-wrap:balance;min-width:0}
 /* each card leans its own way on hover */
 .card:nth-child(1){--hx:-10px;--hy:-10px;--hr:-3deg}
 .card:nth-child(2){--hx:6px;--hy:10px;--hr:2.5deg}
@@ -203,7 +203,7 @@ a.card{text-decoration:none}
 .ev-h .el{display:inline-block;transition:transform .35s cubic-bezier(.3,1.8,.5,1)}          /* like the names on the people pages: hover a letter and it hops */
 .ev-h .el:hover{transform:translateY(-.12em) rotate(-4deg)}
 @media (prefers-reduced-motion:reduce){.ev-h .el{transition:none}}
-.ev-h{margin:0 0 clamp(36px,5vw,64px);font-weight:700;font-size:clamp(64px,12vw,184px);line-height:.9;letter-spacing:-.055em;color:var(--blue);font-feature-settings:"ss01","cv05","cv11";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}   /* set the way Apple sets display type: bold, very tight, clean alternates */
+.ev-h{margin:0 0 clamp(36px,5vw,64px);max-width:13ch;font-weight:700;font-size:clamp(48px,8.4vw,128px);line-height:.92;text-wrap:balance;letter-spacing:-.055em;color:var(--blue);font-feature-settings:"ss01","cv05","cv11";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}   /* set the way Apple sets display type: bold, very tight, clean alternates */
 .ev-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
 @media (max-width:1000px){.ev-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.ev-cards{grid-template-columns:1fr}}
@@ -218,7 +218,8 @@ a.card{text-decoration:none}
 
 /* footer */
 footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
-.contact{font-size:var(--step-3);line-height:1.05;letter-spacing:-.02em;margin:0 0 24px;max-width:14ch;text-wrap:balance}
+.contact{font-size:var(--step-3);line-height:1.05;letter-spacing:-.02em;margin:0 0 24px;max-width:16ch;text-wrap:balance}
+.mail-note{margin:0 0 6px;font-size:var(--step-0);opacity:.75}
 .mail{display:inline-flex;align-items:center;gap:10px;font-size:var(--step-1);text-decoration:none;user-select:all}
 .mail .arr{color:var(--gold);transition:transform .35s}
 .mail:hover .arr{transform:translate(4px,-4px)}
@@ -414,17 +415,16 @@ button,input,select,textarea,optgroup{font-family:inherit}
   <!-- data-net: where the net sits for this section — x, y as fractions of the window, r as a fraction of the window's longer side -->
   <section class="hero" id="home" data-net="0.80 0.46 0.36" data-net-m="0.86 0.26 0.34">
     <h1><img id="heroMark" src="assets/medialoop-wordmark.svg" alt="medialoop" width="4278" height="1185"></h1>
-    <p class="lede">A research collective studying how media shape the ways we connect, drift apart and find each other again.</p>
+    <p class="lede">We fancy ourselves a cozy research boutique of scholars, specializing in projects at the crossroads of media, communication technologies, and our social lives. We believe communication research should always be precise and rigorous but never dull.</p>
   </section>
 
   <section id="about" data-net="-0.03 0.0 0.17" data-net-m="-0.1 0.17 0.18" data-net-at="0 0.35">
-    <p class="label" data-kicker="What we do">A Little About Us</p>
-    <p class="statement intro" id="statement">We are a gathering of researchers with a fondness for complicated questions, unexpected connections, and ideas that become more interesting when passed between people. We believe knowledge is not made in isolation, but through a continual exchange of perspectives, experiments, conversation, and discovery.</p>
-    <p class="statement intro">There is something rather lovely about an idea that leaves one mind, finds another, and returns changed.</p>
+    <p class="label" data-kicker="About us">A Little About Us</p>
     <div class="about-grid ab-cards">
-      <article class="ab-card ab-blue"><canvas aria-hidden="true"></canvas><h3>What holds our attention</h3><p>Our attention is drawn to the relationships between communication, technology, and social life. We study how media and emerging technologies shape the ways we think, feel, connect, and understand one another, as well as how our own behaviors and expectations shape the technologies that surround us. We are particularly interested in the feedback between people and the systems they inhabit.</p></article>
-      <article class="ab-card ab-gold"><canvas aria-hidden="true"></canvas><h3>How we work</h3><p>Placeholder text. A short note on methods, such as diary studies, experiments and conversations with the people who build these systems.</p></article>
-      <article class="ab-card ab-deep"><canvas aria-hidden="true"></canvas><h3>Who it is for</h3><p>Placeholder text. A line on the researchers, designers, families and journalists the work is meant to reach.</p></article>
+      <article class="ab-card ab-blue"><canvas aria-hidden="true"></canvas><h3>Our approach to research</h3><p>We believe, quite unapologetically, that rigor and playfulness belong together in communication research. In our minds, whimsy, risk, and delight sit happily alongside statistics and meticulous measurement. Our approach says the artisanal quality of scientific research should be celebrated, and joyful research translates onto the page. Good research deserves a bit of pizzazz, and we&rsquo;re happy to supply it.</p></article>
+      <article class="ab-card ab-gold"><canvas aria-hidden="true"></canvas><h3>What keeps us interested</h3><p>There is a nearly endless source of inspiration from the mysteries of communication, technology, and human behavior. Media and communication technologies shape how we think, feel, and connect, and our behaviors shape them back. We study both directions of this exchange. Our questions draw us toward friendships, families and the small, everyday rituals through which connection and identity take form.</p></article>
+      <article class="ab-card ab-deep"><canvas aria-hidden="true"></canvas><h3>How we research</h3><p>We&rsquo;re a collective, because research really is best done with others, typically over a cappuccino or Negroni. Ideas grow warmer and braver, and frankly more interesting, when they are debated with friendly affection. Slow research is our preferred mode. Top-notch methods and data analysis anchor everything. Zeal and cheer keep us going, and we think the work is better for both.</p></article>
+      <article class="ab-card ab-cream"><canvas aria-hidden="true"></canvas><h3>Who is invited to our soir&eacute;es</h3><p>Our curious kin, wherever you come from: scholars and students, engineers and designers, journalists and parents, to name a few. Pull up a chair and let&rsquo;s have a discussion that lasts for hours. We are based just outside of the Loop in Chicago and invite you to stop by when traveling through the city. By some miracle, if you have grant money to share, consider us your captive audience &#128521;</p></article>
     </div>
   </section>
 </main>
@@ -433,13 +433,12 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
 <div class="wrap">
   <section id="people" data-net="-0.03 0.0 0.17" data-net-m="-0.1 0.17 0.18" data-net-at="1 0.7">
-    <p class="label" data-kicker="Who we are">People</p>
+    <p class="label" data-kicker="People">Our Kindred Collaborators</p>
     <div class="people">
       <a class="card" href="people/samuel-hardman-taylor.html"><div class="photo"><img src="assets/people/samuel-hardman-taylor.jpg" alt="Samuel Hardman Taylor" loading="lazy"></div><h3>Samuel Hardman Taylor</h3></a>
-      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Name Surname</h3></article>
-      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Name Surname</h3></article>
-      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Name Surname</h3></article>
-      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Name Surname</h3></article>
+      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Y. Anthony Chen</h3></article>
+      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Megan Vendemia</h3></article>
+      <article class="card"><div class="photo" role="img" aria-label="Photo placeholder"></div><h3>Hossein Fathollahian</h3></article>
     </div>
     <script>/* people appear in a fresh random order on every visit: no hierarchy */
     (() => { const g = document.currentScript.previousElementSibling, c = [...g.children];
@@ -448,17 +447,18 @@ button,input,select,textarea,optgroup{font-family:inherit}
   </section>
 
   <section id="events" class="events" aria-labelledby="events-h">
-    <h2 class="ev-h" id="events-h">Events</h2>
+    <h2 class="ev-h" id="events-h">Soir&eacute;es, Events, and other special occasions</h2>
     <div class="ev-cards">
-      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Fall 2026</p><h3>Research Pop-Up</h3><p class="ev-what">A drop-in table where you can try our newest studies, see early results and talk with the team.</p><p class="ev-where">Location to be announced</p></article>
-      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Monthly</p><h3>Talks &amp; Treats</h3><p class="ev-what">Short, friendly talks on media and connection, with something sweet to share afterwards.</p><p class="ev-where">Date and place to be announced</p></article>
-      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Spring 2027</p><h3>Open Lab Day</h3><p class="ev-what">A look behind the scenes at how we run diary and experience-sampling studies.</p><p class="ev-where">Date and place to be announced</p></article>
-      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Monthly</p><h3>Reading Circle</h3><p class="ev-what">A relaxed read and discussion of new work on AI, algorithms and relationships.</p><p class="ev-where">Online</p></article>
+      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Spring 2027</p><h3>A Research Pop&#8209;Up</h3><p class="ev-what">Come learn about the exciting research happening in the collective and our academic departments.</p><p class="ev-where">TBA</p></article>
+      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Monthly</p><h3>Prosecco &amp; Doritos</h3><p class="ev-what">Short, friendly talks on media and connection, with a smidge of indulgence.</p><p class="ev-where">Campus</p></article>
+      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Spring 2027</p><h3>A Day of Research Whimsy</h3><p class="ev-what">Think about your research in a different manner, through a different medium.</p><p class="ev-where">Our research space</p></article>
+      <article class="ev"><canvas class="ev-cv" aria-hidden="true"></canvas><p class="ev-when">Monthly</p><h3>Keeping up the Loop</h3><p class="ev-what">A relaxed read and discussion of new work on AI, algorithms, or whatever strikes your fancy.</p><p class="ev-where">Campus</p></article>
     </div>
   </section>
 
   <section id="publications">
-    <p class="label" data-kicker="Recent work">Publications</p>
+    <p class="label" data-kicker="Publications">Research questions we&rsquo;ve answered</p>
+    <p class="res-intro">Here are some of our newest papers to spark your interest. The full list is under the Research page below.</p>
     <ul class="pubs">
       <li><a href="https://doi.org/10.1177/0093650226149487" target="_blank" rel="noopener"><span class="yr">2026</span><span class="ttl"><span class="ttl-main">Testing hypotheses from the social approval theory of online hate: An analysis of 110 million posts from Parler</span><span class="meta">Markowitz, D. M., &amp; Taylor, S. H. · Communication Research</span></span></a></li>
       <li><a href="https://doi.org/10.1177/2056305126149637" target="_blank" rel="noopener"><span class="yr">2026</span><span class="ttl"><span class="ttl-main">Exploring the predictors and outcomes of perceived algorithm responsiveness in social media feeds: Combining longitudinal and computational methods</span><span class="meta">Taylor, S. H., &amp; Markowitz, D. M. · Social Media + Society</span></span></a></li>
@@ -473,14 +473,14 @@ button,input,select,textarea,optgroup{font-family:inherit}
   </section>
 
   <section id="resources" aria-labelledby="res-h">
-    <p class="label" id="res-h" data-kicker="Free tools">Resources</p>
-    <p class="res-intro">Tools that Dr. Taylor and his collaborators have created, free to use. If you have questions about how to use them, <a href="#contact">email Sam</a>.</p>
+    <p class="label" id="res-h" data-kicker="Resources">Freebies to help others</p>
+    <p class="res-intro">Here you will find tools that Dr. Taylor and his collaborators have created, free to use. If you have questions about how to use them, <a href="#contact">email Sam</a>.</p>
     <div class="res-stack">
-      <a class="res r-blue" href="https://docs.google.com/document/d/11GHs-22nEN9UNJ3MVLq-V8ZS8MVtG2FGaQ7hOCoL7hk/edit?usp=sharing" target="_blank" rel="noopener" style="--i:0"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Scale</span><span class="r-mini" aria-hidden="true">Survey Measures</span><span class="r-n">01 / 06</span></span><span class="r-name">Survey Measures</span><span class="r-desc">Perceived Algorithm Responsiveness and Insensitivity Scale. This 15-item scale measures two variables: perceived algorithm responsiveness (PAR) and perceived algorithm insensitivity (PAI). It is validated for Facebook, Twitter, TikTok and Instagram; more information is in our Social Media + Society publication.</span><span class="r-go">Get the scale</span></a>
+      <a class="res r-blue" href="https://docs.google.com/document/d/11GHs-22nEN9UNJ3MVLq-V8ZS8MVtG2FGaQ7hOCoL7hk/edit?usp=sharing" target="_blank" rel="noopener" style="--i:0"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Scale</span><span class="r-mini" aria-hidden="true">Survey Measures</span><span class="r-n">01 / 06</span></span><span class="r-name">Survey Measures</span><span class="r-desc">Our primary survey measure is the Perceived Algorithm Responsiveness and Insensitivity Scale. This 15-item scale measures two variables: perceived algorithm responsiveness (PAR) and perceived algorithm insensitivity (PAI). It is validated for Facebook, Twitter, TikTok and Instagram; more information is in our Social Media + Society publication.</span><span class="r-go">Get the scale</span></a>
       <a class="res r-gold" href="https://osf.io/uvwr6/" target="_blank" rel="noopener" style="--i:1"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Open materials</span><span class="r-mini" aria-hidden="true">Open Science Framework</span><span class="r-n">02 / 06</span></span><span class="r-name">Open Science Framework</span><span class="r-desc">For many studies you can find the preregistration, survey or experiment materials, data and code on the Open Science Framework. If you are looking for a specific scale or procedure, start on OSF.</span><span class="r-go">Go to OSF</span></a>
-      <a class="res r-ink" href="https://github.com/cornellsml/truman" target="_blank" rel="noopener" style="--i:2"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Experiment platform</span><span class="r-mini" aria-hidden="true">Truman</span><span class="r-n">03 / 06</span></span><span class="r-name">Truman</span><span class="r-desc">A social media simulation: a fake social networking site where participants are randomly assigned to conditions when they sign up, and interact with pre-programmed bots the researcher controls. Everything needed to replicate our experiments or run your own is on GitHub. Using Truman takes technical skills, especially JavaScript; more is in our CHI and CSCW papers.</span><span class="r-go">View on GitHub</span></a>
-      <a class="res r-lav" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:3"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Talks</span><span class="r-mini" aria-hidden="true">Presentations</span><span class="r-n">04 / 06</span></span><span class="r-name">Presentations</span><span class="r-desc">A folder of slides from past conference presentations, colloquiums and job talks.</span><span class="r-go">Open the folder</span></a>
-      <a class="res r-sage" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:4"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Posters</span><span class="r-mini" aria-hidden="true">Posters</span><span class="r-n">05 / 06</span></span><span class="r-name">Posters</span><span class="r-desc">Academic posters from past conference presentations, ready to view or download.</span><span class="r-go">Open the folder</span></a>
+      <a class="res r-ink" href="https://github.com/cornellsml/truman" target="_blank" rel="noopener" style="--i:2"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Experimental methods</span><span class="r-mini" aria-hidden="true">The Original Social Media Simulation</span><span class="r-n">03 / 06</span></span><span class="r-name">The Original Social Media Simulation</span><span class="r-desc">A fake social networking site where participants are randomly assigned to conditions when they sign up, and interact with pre-programmed bots the researcher controls. Everything needed to replicate our experiments or run your own is on GitHub. Using Truman takes technical skills, especially JavaScript; more is in our CHI and CSCW papers.</span><span class="r-go">View on GitHub</span></a>
+      <a class="res r-lav" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:3"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Talks</span><span class="r-mini" aria-hidden="true">Conference Presentations</span><span class="r-n">04 / 06</span></span><span class="r-name">Conference Presentations</span><span class="r-desc">A folder of slides from past conference presentations, colloquiums and job talks.</span><span class="r-go">Open the folder</span></a>
+      <a class="res r-sage" href="https://drive.google.com/drive/folders/1oiKRhQYJuxW4Vn5SB--9bD0lMGeieQBE?usp=sharing" target="_blank" rel="noopener" style="--i:4"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Posters</span><span class="r-mini" aria-hidden="true">Poster Presentations</span><span class="r-n">05 / 06</span></span><span class="r-name">Poster Presentations</span><span class="r-desc">A few poster presentations to serve as inspiration for others. Posters are fun!</span><span class="r-go">Open the folder</span></a>
       <a class="res r-egg" href="https://drive.google.com/drive/folders/1Q8nxloq3sJVYmZVH6bLl9iFaxhOrnXH9?usp=sharing" target="_blank" rel="noopener" style="--i:5"><canvas aria-hidden="true"></canvas><span class="r-top"><span class="r-kind">Papers</span><span class="r-mini" aria-hidden="true">Research publications</span><span class="r-n">06 / 06</span></span><span class="r-name">Research publications</span><span class="r-desc">Pre-print PDFs of some harder-to-find and in-press articles, such as book chapters. Email Sam for access to any other article.</span><span class="r-go">Open the folder</span></a>
     </div>
   </section>
@@ -488,13 +488,14 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
 <footer class="wrap" id="contact" data-net="0.14 0.42 0.33" data-net-m="0.12 0.4 0.36">
   <p class="label" data-kicker="Say hello">Contact</p>
-  <p class="contact">Want to work with us, or just say <span class="t4">hello?</span></p>
+  <p class="contact">We adore meeting new researchers. <span class="t4">Please reach out!</span></p>
+  <p class="mail-note">You can find our email here.</p>
   <a class="mail" href="mailto:hello@medialoop.org"><span class="glink">hello@medialoop.org</span></a>
   <a class="apply" href="https://comm.uic.edu/academics/graduate-studies/prospective-students/" target="_blank" rel="noopener">
     <canvas aria-hidden="true"></canvas>
     <span class="ap-kind">Graduate admissions</span>
     <span class="ap-h">Apply</span>
-    <span class="ap-t">We are affiliated with the Department of Communication at the University of Illinois Chicago. Potential graduate students for PhD programs and Master's degrees are welcome to apply for the upcoming admissions cycle.</span>
+    <span class="ap-t">We are housed with the Department of Communication at the University of Illinois Chicago. Potential graduate students for PhD programs and Master's degrees are welcome to apply for the upcoming admissions cycle.</span>
     <span class="ap-go">More information</span>
   </a>
   <div class="foot">
@@ -674,7 +675,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     // the word Events: one span per letter so each can hop on hover, like the names on the people pages
     const eh = document.getElementById('events-h');
     if (eh) { const w = eh.textContent.trim(); eh.setAttribute('aria-label', w);
-      eh.innerHTML = [...w].map(c => `<span class="el" aria-hidden="true">${c}</span>`).join(''); } }
+      eh.innerHTML = w.split(/(\s+)/).map(t => /\S/.test(t) ? `<span style="white-space:nowrap">${[...t].map(c => `<span class="el" aria-hidden="true">${c}</span>`).join('')}</span>` : ' ').join(''); } }
   function wordBand(time) {
     if (!wTrack) return;
     if (!wb.unit || wTrack.dataset.w !== String(wBand.clientWidth)) {             // fill the band with enough wordmarks to loop seamlessly
@@ -806,12 +807,12 @@ button,input,select,textarea,optgroup{font-family:inherit}
   const st = document.getElementById('statement');
   // wrap every word for the read-along fade, keeping the weighted phrases intact
   const parts = [];
-  st.childNodes.forEach(n => {
+  if (st) st.childNodes.forEach(n => {
     if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(t => parts.push(/\S/.test(t) ? `<span class="w">${t}</span>` : t));
     else n.textContent.split(/(\s+)/).forEach(t => parts.push(/\S/.test(t) ? `<span class="w ${n.className}">${t}</span>` : t));
   });
-  st.innerHTML = parts.join('');
-  const words = [...st.querySelectorAll('.w')];
+  if (st) st.innerHTML = parts.join('');
+  const words = st ? [...st.querySelectorAll('.w')] : [];
 
   /* ---------- the net ----------
      The net is drawn from the hole shapes of your fine net (assets/net-holes.json).
@@ -1054,7 +1055,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
     // header, statement words, marquee
     top.classList.toggle('solid', scrollY > innerHeight * .55);
-    const sr = st.getBoundingClientRect();
+    const sr = st ? st.getBoundingClientRect() : { top: 0, height: 1 };
     const sp = Math.min(1, Math.max(0, (innerHeight * .85 - sr.top) / (sr.height + innerHeight * .35)));
     words.forEach((el, i) => el.style.setProperty('--o', reduce ? 1 : Math.max(.28, Math.min(1, sp * words.length * 1.15 - i))));
     {
@@ -1417,7 +1418,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       const markSrc = heroMark.getAttribute('src'); heroMark.src = markSrc.replace('wordmark.svg', 'wordmark-nodot.svg');   // the logo waits for its dot
       document.body.appendChild(cue);
       const lock = document.createElement('div'); lock.id = 'openLock'; lock.setAttribute('aria-label', 'medialoop, a research boutique');
-      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">A Research Boutique</div>`;
+      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">A Research Collective</div>`;
       document.body.appendChild(lock);
       const push = d => { pt = Math.max(.5, clamp(pt + d)); idle = 0; };
       const onWheel = e => push(e.deltaY / (innerHeight * 2.2));
@@ -1515,11 +1516,14 @@ button,input,select,textarea,optgroup{font-family:inherit}
     const drawEvc = time => evs.forEach((card, n) => { const cv = card.querySelector('.ev-cv'), r = card.getBoundingClientRect(); if (!cv || r.bottom < 0 || r.top > innerHeight || !r.width || !holes.length) return;
       const dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(r.width * dpr), h = Math.round(r.height * dpr); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
       const g = cv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, w, h); g.fillStyle = 'rgba(242,238,221,.9)';
+      // keep the holes off the words: measure each line of text in the card
+      const tb = []; card.querySelectorAll('h3, p').forEach(e => { const rg = document.createRange(); rg.selectNodeContents(e); [...rg.getClientRects()].forEach(b => tb.push([(b.left - r.left) * dpr, (b.top - r.top) * dpr, (b.right - r.left) * dpr, (b.bottom - r.top) * dpr])); });
       const EV = [[1, 0, .62, 1], [1.02, .42, .5, 1.3], [.62, -.04, .5, .8], [1.04, .12, .75, 1.1]][n % 4];   // each card's patch sits somewhere different, with its own hole size
       const T = 700 * dpr * EV[3], k = T / TILE, ox = (n * 211 * dpr) % T, cx = w * EV[0], cy = h * EV[1], R = Math.min(w, h) * EV[2];
       for (let ty = -1; ty * T < h + T; ty++) for (let tx = -1; tx * T < w + T; tx++) for (const hh of holes) {
         const x = (tx * TILE + hh.cx) * k - ox, y = (ty * TILE + hh.cy) * k; if (x < -30 || y < -30 || x > w + 30 || y > h + 30) continue;
         let f = Math.max(0, 1 - Math.hypot(x - cx, y - cy) / R); f *= Math.min(1, Math.max(0, (y - 40 * dpr) / (30 * dpr)) + Math.max(0, (w - x - 40 * dpr) / (30 * dpr)) + .4);
+        for (const [x0, y0, x1, y1] of tb) { const dx = Math.max(0, x0 - x, x - x1), dy = Math.max(0, y0 - y, y - y1), dd = Math.hypot(dx, dy) / dpr; f *= Math.min(1, Math.max(0, (dd - 6) / 22)); }
         if (f < .05) continue; const s2 = k * .8 * Math.min(1, f * 1.6) * (.85 + .15 * Math.sin(time * .9 + hh.ph)); g.setTransform(s2, 0, 0, s2, x, y); g.fill(hh.p); } });
     const loopEv = t => { drawEvc(reduce ? 0 : t / 1000); requestAnimationFrame(loopEv); }; requestAnimationFrame(loopEv); }
 
@@ -1575,8 +1579,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
 
 <style>
 /* About trio as three cards (blue, gold, deep blue) with the breathing net across the top, kept clear of the words */
-.about-grid.ab-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1100px}
-.ab-card{position:relative;overflow:hidden;border-radius:22px;padding:140px 24px 28px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+.about-grid.ab-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1100px}
+.about-grid .ab-card{position:relative;overflow:hidden;border-radius:22px;padding:140px 24px 28px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
   border:0;box-shadow:0 18px 30px -24px #1d386699;transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
 .ab-card:hover{transform:translateY(-8px);box-shadow:0 30px 40px -26px #1d3866cc}
 .ab-card > canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -1585,7 +1589,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .ab-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
 .ab-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .ab-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
-@media (max-width:900px){.about-grid.ab-cards{grid-template-columns:minmax(0,1fr)}.ab-card{min-height:0;padding-top:120px}}
+.ab-cream{background:#e9e2c9;color:var(--blue)}
+@media (max-width:900px){.about-grid.ab-cards{grid-template-columns:minmax(0,1fr)}.about-grid .ab-card{min-height:0;padding-top:120px}}
 </style>
 <script>
 (() => {
@@ -1608,8 +1613,8 @@ button,input,select,textarea,optgroup{font-family:inherit}
     pills.forEach((d, j) => { const c = d.querySelector('canvas'); const r = d.getBoundingClientRect();
       if (r.bottom < 0 || r.top > innerHeight) return; const dp = Math.min(2, devicePixelRatio || 1), W = r.width, Ht = r.height;
       if (c.width !== Math.round(W * dp) || c.height !== Math.round(Ht * dp)) { c.width = Math.round(W * dp); c.height = Math.round(Ht * dp); }
-      const g = c.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height); g.fillStyle = 'rgba(242,238,221,.9)';
-      const k = W / 600, ox = -j * 70, bx = boxes.get(d) || [];
+      const g = c.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height); g.fillStyle = d.classList.contains('ab-cream') ? 'rgba(44,84,148,.85)' : 'rgba(242,238,221,.9)';
+      const k = W / 800, ox = -j * 70, bx = boxes.get(d) || [];
       for (let ty = -1; ty * T * k < Ht + T * k; ty++) for (let tx = -1; tx * T * k < W + T * k; tx++) for (const h of H) {
         const x = ox + (tx * T + h.cx) * k, y = (ty * T + h.cy) * k; if (x < -30 || y < -30 || x > W + 30 || y > Ht + 30) continue;
         let f = ss(1 - y / (Ht * .5));
@@ -1620,6 +1625,13 @@ button,input,select,textarea,optgroup{font-family:inherit}
   }
   const draw2 = now => draw(now / 1000); requestAnimationFrame(draw2);
 })();
+</script>
+<script>
+/* people cards: if a long name (like Fathollahian) is wider than the card, shrink that name until it fits */
+(() => { const fit = () => document.querySelectorAll('.people .card h3').forEach(h => { h.style.fontSize = ''; let fs = parseFloat(getComputedStyle(h).fontSize), i = 0;
+  const c = h.closest('.card'), over = () => { const r = document.createRange(); r.selectNodeContents(h); return Math.max(...[...r.getClientRects()].map(b => b.right)) > c.getBoundingClientRect().right - 12; };
+  while (over() && fs > 14 && i++ < 40) { fs -= 1; h.style.fontSize = fs + 'px'; } });
+  fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit); })();
 </script>
 </body>
 </html>
