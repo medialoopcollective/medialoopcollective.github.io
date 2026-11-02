@@ -403,10 +403,14 @@ button,input,select,textarea,optgroup{font-family:inherit}
   <section>
     <p class="label" data-kicker="Focus">Research interests</p>
     <ul class="p-topics">
-      <li><canvas aria-hidden="true"></canvas><strong>Algorithm responsiveness</strong></li>
-      <li><canvas aria-hidden="true"></canvas><strong>AI-mediated communication</strong></li>
-      <li><canvas aria-hidden="true"></canvas><strong>Interpersonal connection on social media</strong></li>
-      <li><canvas aria-hidden="true"></canvas><strong>Experience sampling and diary studies</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest one</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest two</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest three</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest four</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest five</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest six</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest seven</strong></li>
+      <li><canvas aria-hidden="true"></canvas><strong>Research interest eight</strong></li>
     </ul>
   </section>
 
@@ -666,6 +670,48 @@ button,input,select,textarea,optgroup{font-family:inherit}
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
     addEventListener('click', e => { if (top.classList.contains('open') && !e.target.closest('#site-nav, .menu-btn')) set(false); });   // a click beside the panel closes it
   })();
+})();
+</script>
+
+<style>
+/* research interests as two slow rows of coloured tags drifting past each other; the drift follows the page scroll */
+.p-topics{display:none !important}
+.p-marq{display:grid;gap:12px;overflow:hidden;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding:6px 0 10px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.p-marq .row{display:flex;width:max-content;will-change:transform}
+.p-marq span{white-space:nowrap;margin-right:12px;padding:14px 22px;border-radius:18px;font-weight:700;font-size:clamp(15px,1.4vw,19px);letter-spacing:-.018em;line-height:1.15;box-shadow:0 14px 24px -20px #1d386699}
+.p-marq .c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
+.p-marq .c-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
+.p-marq .c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
+.p-marq .c-cream{background:#e9e2c9;color:var(--blue)}
+.p-marq .c-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
+.p-marq .c-plum{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
+</style>
+<script>
+(() => {
+  const ul = document.querySelector('.p-topics'); if (!ul) return;
+  const names = [...ul.querySelectorAll('strong')].map(s => s.textContent.trim());
+  const PAL = ['c-blue', 'c-gold', 'c-deep', 'c-cream', 'c-lav', 'c-plum'];
+  for (let i = PAL.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [PAL[i], PAL[j]] = [PAL[j], PAL[i]]; }
+  const half = Math.ceil(names.length / 2), sets = [names.slice(0, half), names.slice(half)];
+  const wrap = document.createElement('div'); wrap.className = 'p-marq'; wrap.setAttribute('aria-label', 'Research interests: ' + names.join(', '));
+  const rows = sets.map((set, r) => {
+    const row = document.createElement('div'); row.className = 'row'; row.setAttribute('aria-hidden', 'true');
+    const one = set.map((n, i) => '<span class="' + PAL[(i + r * half) % PAL.length] + '">' + n + '</span>').join('');
+    row.innerHTML = one.repeat(6); wrap.appendChild(row); return { row, dir: r ? 1 : -1, w: 0 };
+  });
+  ul.after(wrap);
+  const measure = () => rows.forEach(o => { o.w = o.row.scrollWidth / 6; });
+  measure(); addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sy = scrollY, t0 = performance.now();
+  // very slow drift (6px a second) plus a gentle share of the page scroll, so the rows move with you as you scroll
+  (function tick(now) {
+    sy += (scrollY - sy) * .08;
+    rows.forEach((o, i) => { if (!o.w) return; const d = (still ? 0 : (now - t0) / 1000 * 6) + sy * .35 + i * o.w * .4;
+      const x = ((d % o.w) + o.w) % o.w; o.row.style.transform = 'translateX(' + (o.dir < 0 ? -x - o.w : x - 2 * o.w) + 'px)'; });
+    requestAnimationFrame(tick);
+  })(t0);
 })();
 </script>
 </body>

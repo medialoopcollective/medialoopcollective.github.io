@@ -421,19 +421,10 @@ button,input,select,textarea,optgroup{font-family:inherit}
     <p class="label" data-kicker="What we do">A Little About Us</p>
     <p class="statement intro" id="statement">We are a gathering of researchers with a fondness for complicated questions, unexpected connections, and ideas that become more interesting when passed between people. We believe knowledge is not made in isolation, but through a continual exchange of perspectives, experiments, conversation, and discovery.</p>
     <p class="statement intro">There is something rather lovely about an idea that leaves one mind, finds another, and returns changed.</p>
-    <div class="about-grid">
-      <article>
-        <h3>What holds our attention</h3>
-        <p>Our attention is drawn to the relationships between communication, technology, and social life. We study how media and emerging technologies shape the ways we think, feel, connect, and understand one another, as well as how our own behaviors and expectations shape the technologies that surround us. We are particularly interested in the feedback between people and the systems they inhabit.</p>
-      </article>
-      <article>
-        <h3>How we work</h3>
-        <p>Placeholder text. A short note on methods, such as diary studies, experiments and conversations with the people who build these systems.</p>
-      </article>
-      <article>
-        <h3>Who it is for</h3>
-        <p>Placeholder text. A line on the researchers, designers, families and journalists the work is meant to reach.</p>
-      </article>
+    <div class="about-grid ab-cards">
+      <article class="ab-card ab-blue"><canvas aria-hidden="true"></canvas><h3>What holds our attention</h3><p>Our attention is drawn to the relationships between communication, technology, and social life. We study how media and emerging technologies shape the ways we think, feel, connect, and understand one another, as well as how our own behaviors and expectations shape the technologies that surround us. We are particularly interested in the feedback between people and the systems they inhabit.</p></article>
+      <article class="ab-card ab-gold"><canvas aria-hidden="true"></canvas><h3>How we work</h3><p>Placeholder text. A short note on methods, such as diary studies, experiments and conversations with the people who build these systems.</p></article>
+      <article class="ab-card ab-deep"><canvas aria-hidden="true"></canvas><h3>Who it is for</h3><p>Placeholder text. A line on the researchers, designers, families and journalists the work is meant to reach.</p></article>
     </div>
   </section>
 </main>
@@ -1054,7 +1045,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       const mk = document.getElementById('introMark') || heroMarkEl;
       clear(mk && mk.getBoundingClientRect(), .62, 1.05);
       if (cur.which === 'mid') {                                    // cream fades behind the text around the middle net
-        document.querySelectorAll('.about-grid > article, #publications .label, #publications .pubs li:nth-child(-n+2), #publications .more').forEach(el => clear(el.getBoundingClientRect(), .62, .9, .96, .9));
+        document.querySelectorAll('.about-grid > *, #publications .label, #publications .pubs li:nth-child(-n+2), #publications .more').forEach(el => clear(el.getBoundingClientRect(), .62, .9, .96, .9));
       }
       const ct = contactEls.map(e => e.getBoundingClientRect());
       if (ct.length) clear({ left: Math.min(...ct.map(r => r.left)), top: Math.min(...ct.map(r => r.top)), right: Math.max(...ct.map(r => r.right)), bottom: Math.max(...ct.map(r => r.bottom)),
@@ -1555,7 +1546,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
   /* entrances: a gentle, staggered fade-and-rise as things come into view */
   (() => {
     if (reduce || !('IntersectionObserver' in window)) return;
-    const groups = ['.about-grid > article', '.pubs li', '.more', '.res-intro', '.people > .card', '#contact .contact', '#contact .mail', '.apply', '.foot'];
+    const groups = ['.about-grid > *', '.pubs li', '.more', '.res-intro', '.people > .card', '#contact .contact', '#contact .mail', '.apply', '.foot'];
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
     groups.forEach(sel => document.querySelectorAll(sel).forEach((el, i, all) => {
       const sib = [...el.parentNode.children].filter(c => all.length && [...all].includes(c)), k = Math.max(0, sib.indexOf(el));
@@ -1579,6 +1570,55 @@ button,input,select,textarea,optgroup{font-family:inherit}
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
     addEventListener('click', e => { if (top.classList.contains('open') && !e.target.closest('#site-nav, .menu-btn')) set(false); });   // a click beside the panel closes it
   })();
+})();
+</script>
+
+<style>
+/* About trio as three cards (blue, gold, deep blue) with the breathing net across the top, kept clear of the words */
+.about-grid.ab-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1100px}
+.ab-card{position:relative;overflow:hidden;border-radius:22px;padding:140px 24px 28px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+  border:0;box-shadow:0 18px 30px -24px #1d386699;transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
+.ab-card:hover{transform:translateY(-8px);box-shadow:0 30px 40px -26px #1d3866cc}
+.ab-card > canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ab-card h3{position:relative;margin:0;font-weight:700;font-size:clamp(26px,2.5vw,36px);letter-spacing:-.035em;line-height:1.02}
+.ab-card p{position:relative;margin:12px 0 0;max-width:none;font-size:15.5px;line-height:1.5}
+.ab-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
+.ab-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
+.ab-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
+@media (max-width:900px){.about-grid.ab-cards{grid-template-columns:minmax(0,1fr)}.ab-card{min-height:0;padding-top:120px}}
+</style>
+<script>
+(() => {
+  const pills = [...document.querySelectorAll('.ab-card')]; if (!pills.length || !window.NET_HOLES) return;
+  const N = NET_HOLES, T = N.tile, SC = N.scale;
+  const H = N.holes.map(h => { const pts = []; for (let i = 2; i < h.length; i += 2) pts.push([h[i] / SC, h[i + 1] / SC]);
+    const p = new Path2D(), n = pts.length, m = i => [(pts[i % n][0] + pts[(i + 1) % n][0]) / 2, (pts[i % n][1] + pts[(i + 1) % n][1]) / 2];
+    let q = m(0); p.moveTo(...q); for (let i = 1; i <= n; i++) { const c = pts[i % n], r = m(i); p.quadraticCurveTo(c[0], c[1], r[0], r[1]); }
+    return { cx: h[0] / SC, cy: h[1] / SC, p, ph: (h[0] * 12.9898 + h[1] * 78.233) % 6.283 }; });
+  const ss = v => { v = Math.max(0, Math.min(1, v)); return v * v * (3 - 2 * v); };
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let boxes = new Map();
+  // measure the actual words (title, toggle and paragraph lines) so the holes stay clear of them
+  const measure = () => pills.forEach(d => { const r = d.getBoundingClientRect(), out = [];
+    d.querySelectorAll('h3, p').forEach(e => { const rg = document.createRange(); rg.selectNodeContents(e);
+      [...rg.getClientRects()].forEach(b => out.push([b.left - r.left, b.top - r.top, b.right - r.left, b.bottom - r.top])); });
+    boxes.set(d, out); });
+  addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure); measure();
+  function draw(t) {
+    pills.forEach((d, j) => { const c = d.querySelector('canvas'); const r = d.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return; const dp = Math.min(2, devicePixelRatio || 1), W = r.width, Ht = r.height;
+      if (c.width !== Math.round(W * dp) || c.height !== Math.round(Ht * dp)) { c.width = Math.round(W * dp); c.height = Math.round(Ht * dp); }
+      const g = c.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height); g.fillStyle = 'rgba(242,238,221,.9)';
+      const k = W / 600, ox = -j * 70, bx = boxes.get(d) || [];
+      for (let ty = -1; ty * T * k < Ht + T * k; ty++) for (let tx = -1; tx * T * k < W + T * k; tx++) for (const h of H) {
+        const x = ox + (tx * T + h.cx) * k, y = (ty * T + h.cy) * k; if (x < -30 || y < -30 || x > W + 30 || y > Ht + 30) continue;
+        let f = ss(1 - y / (Ht * .5));
+        for (const [x0, y0, x1, y1] of bx) { const dx = Math.max(0, x0 - x, x - x1), dy = Math.max(0, y0 - y, y - y1); f *= ss((Math.hypot(dx, dy) - 6) / 26); }
+        if (f < .05) continue; const s = k * .82 * Math.min(1, f * 1.2) * (still ? 1 : .88 + .12 * Math.sin(t * .9 + h.ph));
+        g.setTransform(dp * s, 0, 0, dp * s, dp * x, dp * y); g.fill(h.p); } });
+    requestAnimationFrame(draw2);
+  }
+  const draw2 = now => draw(now / 1000); requestAnimationFrame(draw2);
 })();
 </script>
 </body>
