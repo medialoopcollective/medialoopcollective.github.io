@@ -1707,7 +1707,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
     const row = document.createElement('div'); row.className = 'row' + (r === 3 ? ' buzz' : '');
     const one = set.map(t => { const fun = t[0] === '*', w = fun ? t.slice(1) : t;
       // sage chartreuse turns up only very rarely, as a little surprise
-      const col = Math.random() < .04 ? 'c-sage' : PAL[k % PAL.length], light = /cream|lav|gold|sage/.test(col);
+      const col = Math.random() < .07 ? 'c-sage' : PAL[k % PAL.length], light = /cream|lav|gold|sage/.test(col);
       // the thinnest weights only on the darker pills, so they stay readable
       let wt = pick(fun ? WTB : WT); if (light && wt < 300) wt = 300; const it = Math.random() < .35;
       const dot = Math.random() < .18 ? '<span class="gdot" aria-hidden="true"></span>' : '';
