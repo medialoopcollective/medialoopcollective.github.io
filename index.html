@@ -11,7 +11,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,100;1,9..144,400..900,100&family=Instrument+Serif:ital@0;1&family=Zilla+Slab:wght@500;700&display=swap">
 <style>
 /* Layout: one long scroll over a Kusama-style net pinned to the window. Its holes stay put and
    breathe; a tone-on-tone blue gradient drifts underneath and travels from section to section. */
@@ -1645,19 +1644,17 @@ button,input,select,textarea,optgroup{font-family:inherit}
 <style>
 /* in place of the medialoop banner: three rows of coloured pills (research interests mixed with playful words),
    drifting slowly on their own and speeding up while you scroll */
-.marquee.hm-marq{height:auto !important;display:grid;gap:14px;padding:clamp(56px,8vw,110px) 0;
+.marquee.hm-marq{height:auto !important;display:grid;gap:16px;padding:clamp(56px,8vw,110px) 0;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .hm-marq .row{display:flex;width:max-content;will-change:transform}
-.hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.6em 1.05em;border-radius:22px;font-weight:700;font-size:clamp(18px,2vw,28px);letter-spacing:-.025em;line-height:1.1;box-shadow:0 14px 24px -20px #1d386699}
+.hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(19px,2.15vw,30px);letter-spacing:-.025em;line-height:1.1;box-shadow:0 14px 24px -20px #1d386699}
 .hm-marq .pill.fun{font-weight:300;font-style:italic;letter-spacing:-.01em}
-/* the playful words get their own display faces (the research interests stay in Inter):
-   a soft, wonky Fraunces, an elegant Instrument Serif italic and a friendly Zilla Slab */
+/* all Inter: every pill gets its own weight (100 to 900), some upright and some italic; a few gold dots sit between words */
 .hm-marq .row{align-items:center}
 .hm-marq .pill.fun{font-style:normal;letter-spacing:-.01em}
-.hm-marq .f-fraunces{font-family:"Fraunces",Georgia,serif;font-weight:600;font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 72;letter-spacing:-.015em}
-.hm-marq .f-fraunces-bold{font-family:"Fraunces",Georgia,serif;font-weight:800;font-variation-settings:"SOFT" 100,"opsz" 96;letter-spacing:-.02em}
-.hm-marq .f-instrument{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:italic;font-size:clamp(21px,2.35vw,33px);letter-spacing:0}
-.hm-marq .f-slab{font-family:"Zilla Slab",Rockwell,serif;font-weight:700;letter-spacing:0}
+.hm-marq .pill.it{font-style:italic}
+.hm-marq .row.buzz .pill{font-size:clamp(22px,2.6vw,38px);padding:.55em 1.15em;border-radius:28px}
+.hm-marq .gdot{flex:none;width:clamp(12px,1.2vw,18px);height:clamp(12px,1.2vw,18px);margin:0 18px 0 4px;background:var(--gold);border-radius:52% 46% 50% 48%/50% 54% 46% 50%}
 .hm-marq .c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
 .hm-marq .c-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
 .hm-marq .c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
@@ -1672,20 +1669,26 @@ button,input,select,textarea,optgroup{font-family:inherit}
 <script>
 (() => {
   const box = document.querySelector('.hm-marq'); if (!box) return;
+  // rows 1-3: recurring ideas across Dr. Taylor's papers; row 4: buzz words
   const ROWS = [
-    ['Algorithm responsiveness', '*joy', 'AI-mediated communication', '*rizz', 'Loneliness and social connectedness', '*whimsy', 'Open science', '*more than vibes', '*Chicago-style hot dogs', '*debate'],
-    ['*collaborators', 'Interpersonal connection on social media', '*pizzazz', 'Experience sampling and diary studies', '*cappuccinos', '*delight', '*Mal\u00f6rt', '*cowboy', '*Italian beefs'],
-    ['Cyberbullying and bystander intervention', '*fun', 'Media multiplexity in close relationships', '*playful', '*soir\u00e9es', '*curiosity', '*zeal', '*giardiniera']
+    ['Algorithms', 'Perceived algorithm responsiveness', 'Social connectedness', 'Loneliness', 'Close relationships', 'AI-mediated communication', 'Self-disclosure'],
+    ['Interpersonal communication', 'Social media', 'Subjective well-being', 'Imagined audience', 'Affordances', 'Media multiplexity', 'Algorithm awareness', 'Intimacy'],
+    ['Cyberbullying', 'Bystander intervention', 'Open science', 'Mobile phones', 'Uses and gratifications', 'Media enjoyment', 'Experience sampling', 'Longitudinal methods'],
+    ['*joy', '*rizz', '*more than vibes', '*whimsy', '*collaborators', '*debate', '*cowboy', '*pizzazz', '*Chicago-style hot dogs', '*Mal\u00f6rt', '*Italian beefs', '*giardiniera', '*cappuccinos', '*soir\u00e9es', '*delight', '*curiosity', '*zeal', '*fun', '*playful']
   ];
   const PAL = ['c-blue', 'c-gold', 'c-deep', 'c-cream', 'c-lav', 'c-plum'];
   for (let i = PAL.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [PAL[i], PAL[j]] = [PAL[j], PAL[i]]; }
-  const FONTS = ['f-fraunces', 'f-slab', 'f-instrument', 'f-fraunces-bold'];
-  let f = Math.floor(Math.random() * FONTS.length);
+  const WT = [200, 300, 400, 500, 600, 700, 800, 900], WTB = [100, 200, 300, 500, 700, 800, 900];
+  const pick = a => a[Math.floor(Math.random() * a.length)];
   let k = 0;
   const rows = ROWS.map((set, r) => {
-    const row = document.createElement('div'); row.className = 'row';
+    const row = document.createElement('div'); row.className = 'row' + (r === 3 ? ' buzz' : '');
     const one = set.map(t => { const fun = t[0] === '*', w = fun ? t.slice(1) : t;
-      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun ' + FONTS[f++ % FONTS.length] : '') + '">' + w + '</span>'; }).join('');
+      const col = PAL[k % PAL.length], light = /cream|lav|gold/.test(col);
+      // the thinnest weights only on the darker pills, so they stay readable
+      let wt = pick(fun ? WTB : WT); if (light && wt < 300) wt = 300; const it = Math.random() < .35;
+      const dot = Math.random() < .18 ? '<span class="gdot" aria-hidden="true"></span>' : '';
+      return '<span class="pill ' + PAL[k++ % PAL.length] + (fun ? ' fun' : '') + (it ? ' it' : '') + '" style="font-weight:' + wt + '">' + w + '</span>' + dot; }).join('');
     row.innerHTML = one.repeat(5); box.appendChild(row); return { row, dir: r % 2 ? 1 : -1, w: 0, x: Math.random() };
   });
   const measure = () => rows.forEach(o => { o.w = o.row.scrollWidth / 5; });
