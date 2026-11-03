@@ -1,0 +1,210 @@
+<meta charset="utf-8">
+<title>medialoop Paper Template</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap">
+<style>
+/* layout: five publication templates, each a US Letter title page and a text page side by side (stacked on phones).
+   Pages use the CV's paper (#F9F7F4) and ink (#2F3028), Inter throughout, medialoop blue/gold, the real net. */
+:root{--paper:#F9F7F4;--ink:#2F3028;--blue:#2c5494;--deep:#1d3866;--gold:#e7aa4d;--cream:#f2eedd;--rule:#2c549433;--sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:#e4e0d3;color:var(--ink);font-family:var(--sans);padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:56px}
+h1.pg{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.04em;line-height:1.02;margin:0;color:var(--blue)}
+.intro p{max-width:66ch;margin:10px 0 0;line-height:1.5}
+.opt{display:grid;gap:14px}
+.head{display:flex;align-items:baseline;gap:12px}
+.tag{font-weight:700;color:var(--cream);background:var(--blue);width:34px;height:32px;display:grid;place-items:center;border-radius:46% 54% 50% 50%/55% 45% 55% 45%;flex:none;font-size:15px}
+.head h2{margin:0;font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--blue)}
+.opt>p{margin:0;font-size:15px;max-width:76ch;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:760px){.pair{grid-template-columns:1fr}}
+
+/* a US Letter page; everything inside is sized in container units so the page scales as one piece (1u = 1/816 of the width) */
+.page{container-type:inline-size;aspect-ratio:8.5/11;background:var(--paper);position:relative;overflow:hidden;border-radius:2px}
+.pi{position:absolute;inset:0;padding:7.4cqw 7.4cqw 6.2cqw;display:flex;flex-direction:column;font-size:1.55cqw;line-height:1.42;color:var(--ink);font-weight:350}
+.page canvas.net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pi>*{position:relative}
+.cols{column-count:2;column-gap:3.7cqw;text-align:justify;hyphens:auto;flex:1;min-height:0;overflow:hidden}
+.cols p{margin:0 0 .7em}
+.cols p+p{text-indent:1.4em;margin-top:-.7em}
+.cols h4{margin:.9em 0 .45em;font-size:1.7cqw;font-weight:650;letter-spacing:-.01em;color:var(--blue);break-after:avoid}
+.cols h4:first-child{margin-top:0}
+.cols h4 b{color:var(--gold)}
+.wm{height:3.2cqw;width:auto;display:block}
+.small{font-size:1.15cqw;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.meta{font-size:1.25cqw;line-height:1.45}
+.title{margin:0;font-weight:750;letter-spacing:-.035em;line-height:1.02;color:var(--ink)}
+.title b{color:var(--gold);font-weight:750}
+.auth{margin:0;font-size:1.75cqw;font-weight:500}
+.auth span{font-weight:300;font-size:1.3cqw;display:block;margin-top:.3em}
+.abs{font-size:1.5cqw;line-height:1.45}
+.abs strong{font-weight:650;color:var(--blue)}
+.kw{font-size:1.25cqw}
+.kw b{font-weight:650;color:var(--blue)}
+.foot{display:flex;justify-content:space-between;align-items:center;font-size:1.15cqw;margin-top:2.4cqw;padding-top:1.2cqw;border-top:.12cqw solid var(--rule)}
+.pn{display:inline-grid;place-items:center;min-width:3cqw;height:2.8cqw;padding:0 .8cqw;border-radius:52% 48% 46% 54%/50% 54% 46% 50%;background:var(--gold);color:var(--ink);font-weight:650}
+.fig{break-inside:avoid;margin:.4em 0 1em;padding:1.6cqw;border-radius:1.6cqw;background:#2c54940f}
+.fig .bars{display:flex;align-items:flex-end;gap:1cqw;height:9cqw}
+.fig .bars i{flex:1;border-radius:.6cqw .6cqw 0 0;background:var(--blue)}
+.fig .bars i:nth-child(even){background:var(--gold)}
+.fig figcaption{margin-top:.8cqw;font-size:1.2cqw;line-height:1.4}
+.fig figcaption b{color:var(--blue)}
+.pq{break-inside:avoid;margin:.4em 0 1em;font-size:2.1cqw;line-height:1.25;font-weight:300;letter-spacing:-.01em;color:var(--blue);text-align:left}
+
+/* nets that only cover part of the page (higher specificity than the full-page default) */
+.page canvas.net.ring{inset:auto;right:-14cqw;top:20cqw;width:40cqw;height:40cqw}
+.page canvas.net.netpatch{inset:auto;right:0;bottom:0;width:38cqw;height:30cqw}
+.page canvas.net.ribbon{inset:auto;top:0;bottom:0;left:50%;width:5cqw;height:100%;translate:-50% 0}
+/* shared playful bits */
+.blob{border-radius:58% 42% 52% 48%/46% 58% 42% 54%}
+.sticker{display:inline-block;padding:.7cqw 1.6cqw;border-radius:99px;font-size:1.15cqw;font-weight:650;letter-spacing:.12em;text-transform:uppercase}
+.pills{display:flex;flex-wrap:wrap;gap:.9cqw}
+.pills span{padding:.6cqw 1.4cqw;border-radius:99px;font-size:1.25cqw;font-weight:600}
+.c-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 55%,#1f3f73);color:var(--cream)}
+.c-gold{background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--ink)}
+.c-deep{background:linear-gradient(160deg,#24477f,#1d3866 60%,#152b4f);color:var(--cream)}
+.c-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
+.c-plum{background:linear-gradient(160deg,#6b4a6e,#57385a 55%,#3f2742);color:var(--cream)}
+.c-sage{background:linear-gradient(160deg,#d8de9c,#ccd389 55%,#b5bd6c);color:var(--ink)}
+.c-cream{background:#ece6d2;color:var(--blue)}
+.brush{display:inline;padding:.05em .25em .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:.14em .26em .18em .22em}
+.dropcap::first-letter{float:left;font-size:4.6em;line-height:.8;font-weight:800;color:var(--blue);margin:.06em .08em 0 0}
+.note{font-style:italic;font-weight:400;color:var(--blue);font-size:1.3cqw;line-height:1.35}
+.arrow{display:inline-block;width:2.4cqw;height:2.4cqw;background:var(--blue);-webkit-mask:url(../assets/arrow.svg) center/contain no-repeat;mask:url(../assets/arrow.svg) center/contain no-repeat;vertical-align:middle}
+
+/* apple family: lots of white space, big tight headlines, quiet grey secondary text, rounded image panels, the net used like a product shot.
+   Only standard paper parts, so anyone in the group can use it. */
+.ap .pi{padding:8cqw 9cqw 6cqw}
+.ap .eyebrow{font-size:1.3cqw;font-weight:600;letter-spacing:.01em;color:var(--blue)}
+.ap .muted{color:#2f302899}
+.ap .one{font-size:1.7cqw;line-height:1.6;flex:1;min-height:0;overflow:hidden;font-weight:400;letter-spacing:-.005em}
+.ap .one p{margin:0 0 1em}
+.ap .one h4{margin:1.6em 0 .5em;font-size:2.6cqw;line-height:1.1;font-weight:700;letter-spacing:-.03em;color:var(--ink);break-after:avoid}
+.ap .one h4:first-child{margin-top:0}
+.ap .one h4 b{display:none}
+.ap .fig3{margin:1.2em 0 1.4em}
+.ap .fig3 .panel{height:16cqw;border-radius:2.4cqw;background:#2c54940c;display:flex;align-items:flex-end;gap:1.6cqw;padding:2.4cqw 3cqw}
+.ap .fig3 .panel i{flex:1;border-radius:1cqw 1cqw .3cqw .3cqw;background:var(--blue)}
+.ap .fig3 .panel i:nth-child(even){background:#2c549466}
+.ap .fig3 figcaption{margin-top:1cqw;font-size:1.25cqw;line-height:1.45;color:#2f302899}
+.ap .fig3 figcaption b{color:var(--ink);font-weight:600}
+.ap .footA{display:flex;justify-content:space-between;align-items:center;margin-top:2.6cqw;font-size:1.15cqw;color:#2f302899}
+.ap .footA .wm{height:1.9cqw}
+.ap .hero{position:relative;border-radius:3cqw;overflow:hidden;background:radial-gradient(120% 120% at 70% 30%,#3a6ab6,#2c5494 45%,#1d3866)}
+.ap .lead{font-size:2.3cqw;line-height:1.35;font-weight:400;letter-spacing:-.015em;color:#2f3028cc}
+.ap .lead strong{color:var(--ink);font-weight:600}
+.ap .tags{display:flex;flex-wrap:wrap;gap:.8cqw}
+.ap .tags span{padding:.5cqw 1.3cqw;border-radius:99px;background:#2c549414;color:var(--blue);font-size:1.2cqw;font-weight:500}
+.ap .rhA{display:flex;justify-content:space-between;align-items:center;margin-bottom:4cqw;font-size:1.2cqw;color:#2f302899}
+.ap .rhA .wm{height:2cqw}
+
+/* dark reveal family */
+.dk .hero{background:radial-gradient(120% 120% at 70% 30%,#3a6ab6,#2c5494 45%,#1d3866)}
+.dk .hero>*{position:relative}
+.dk .hero .eyebrow{color:var(--gold)}
+.dk .hero .title{color:#f9f7f4;line-height:1;letter-spacing:-.055em;font-weight:800}
+.dk .hero .title b{color:var(--gold)}
+.dk .hero .auth{color:#f9f7f4cc;font-weight:400}
+.dk .wmc{height:2.8cqw;aspect-ratio:4278/1185;background:#f9f7f4;-webkit-mask:url(../assets/medialoop-wordmark.svg) left/contain no-repeat;mask:url(../assets/medialoop-wordmark.svg) left/contain no-repeat}
+.dk .bar{background:radial-gradient(120% 220% at 80% 0%,#3a6ab6,#2c5494 45%,#1d3866);position:relative;display:flex;justify-content:space-between;align-items:center;border-radius:2cqw;overflow:hidden;padding:2cqw 2.8cqw;margin-bottom:4cqw;color:#f9f7f4cc;font-size:1.2cqw}
+.dk .bar .wmc{height:2.2cqw;position:relative}
+.dk .bar>span{position:relative}
+.d3 .bar{background:radial-gradient(120% 220% at 80% 0%,#2c5494,#16294d 55%,#0f1d38)}
+.dk .pnd{display:inline-grid;place-items:center;min-width:3.4cqw;height:3.4cqw;border-radius:99px;background:var(--deep);color:#f9f7f4;font-weight:600}
+
+/* D1 the original: rounded panel, title at the bottom-left */
+.d1 .hero{padding:7cqw 6cqw 6cqw;margin:0 -2cqw 4cqw;min-height:62cqw;display:flex;flex-direction:column;justify-content:flex-end;border-radius:3cqw}
+.d1 .hero .title{font-size:7cqw;margin:1.6cqw 0 2cqw;max-width:88%}
+.d1 .hero .wmc{position:absolute;left:6cqw;top:5.6cqw}
+
+/* D2 full bleed: the panel runs edge to edge across the top half, title centred */
+.d2 .pi{padding-top:0}
+.d2 .hero{border-radius:0 0 3cqw 3cqw;margin:0 -9cqw 4.4cqw;padding:9cqw 9cqw 8cqw;min-height:66cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.d2 .hero .wmc{position:absolute;left:50%;translate:-50% 0;top:6cqw;-webkit-mask-position:center;mask-position:center}
+.d2 .hero .title{font-size:8cqw;margin:1.6cqw 0 2.2cqw}
+.d2 .lead{text-align:center;max-width:88%;margin:0 auto 3cqw}
+.d2 .tags{justify-content:center;margin-bottom:4cqw}
+
+/* D3 midnight: almost-black navy, the net glows softly, abstract inside the panel too */
+.d3 .hero{background:radial-gradient(90% 90% at 75% 20%,#2c5494,#16294d 55%,#0f1d38);padding:6cqw 6cqw 5.4cqw;margin:0 -2cqw 4cqw;border-radius:3cqw}
+.d3 .hero .title{font-size:7.4cqw;margin:10cqw 0 2cqw;max-width:86%}
+.d3 .hero .rule{height:.12cqw;background:#f9f7f433;margin:3cqw 0 2.6cqw}
+.d3 .hero .abs2{color:#f9f7f4cc;font-size:1.6cqw;line-height:1.5;font-weight:300}
+.d3 .hero .tags span{background:#f9f7f41a;color:#f9f7f4}
+.d3 .bar{background:#0f1d38}
+
+/* D4 side by side: a tall panel on the left with the title, abstract and authors on the right */
+.d4 .split{display:grid;grid-template-columns:1.05fr 1fr;gap:4cqw;margin:0 0 4.4cqw;align-items:stretch}
+.d4 .hero{border-radius:3cqw;padding:5cqw 4.4cqw 4.4cqw;min-height:66cqw;display:flex;flex-direction:column;justify-content:flex-end}
+.d4 .hero .wmc{position:absolute;left:4.4cqw;top:4.4cqw}
+.d4 .hero .title{font-size:6.2cqw;margin:1.4cqw 0 0}
+.d4 .right{display:flex;flex-direction:column;justify-content:flex-end;gap:2.4cqw}
+.d4 .right .lead{font-size:1.85cqw;margin:0}
+.d4 .right .who b{display:block;font-weight:600;font-size:1.5cqw}
+.d4 .right .who span{font-size:1.25cqw}
+
+/* D5 window: a rounded panel with a smaller title, set inside generous margins with the net framing it */
+.d5 .hero{border-radius:50cqw 50cqw 3cqw 3cqw;padding:16cqw 6cqw 6cqw;margin:2cqw 4cqw 4cqw;min-height:62cqw;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center}
+.d5 .hero .title{font-size:6.4cqw;margin:1.6cqw 0 2cqw}
+.d5 .top5{display:flex;justify-content:center;margin-bottom:0}
+.d5 .lead{text-align:center;max-width:86%;margin:0 auto 3.6cqw}
+</style>
+<div class="wrap">
+  <header class="intro"><h1 class="pg">medialoop paper template: Dark reveal</h1><p>The chosen medialoop publication style. US Letter, one column, Inter, off-black #2F3028 on warm off-white #F9F7F4. Title page: a rounded deep-blue panel with the net, cream wordmark, gold eyebrow, off-white title with a gold full stop. Text pages: a slim dark bar with the wordmark and running title, and dark-circle page numbers. Uses only standard paper parts, so anyone in the group can drop their paper in. Sample text is for layout only.</p></header>
+  <div id="opts"></div>
+</div>
+<script src="../assets/net-holes.js"></script>
+<script>
+const ABS = `<strong>Abstract.</strong> Personalization promises feeds that feel made for us, yet many people report feeling more alone the longer they scroll. This study asks how perceptions of algorithmic personalization relate to social connectedness over time. Using a three-wave panel of adult TikTok users, we test whether feeling understood by the algorithm substitutes for, or supplements, feeling understood by other people. Results point to a quiet trade-off with implications for platform design and for how we study algorithms as relational partners.`;
+const KW = `<b>Keywords</b> algorithms · loneliness · social connectedness · TikTok · panel study`;
+const BODY1 = `<h4>Introduction<b>.</b></h4><p>Recommendation algorithms now sit between people and much of what they see, read and share. Users describe their feeds in strikingly relational terms: the algorithm "gets" them, "knows" them, or has stopped listening. These folk descriptions invite a communication question. If people experience algorithms as responsive, what happens to their sense of being understood by the people around them?</p><p>Research on perceived responsiveness has long shown that feeling understood, validated and cared for is a cornerstone of close relationships. We extend this work to algorithmic media, asking whether a responsive feed offers some of the same rewards, and at what cost.</p><p>Two accounts compete. A displacement account suggests that time with responsive feeds crowds out time with people. A stimulation account suggests that feeling seen by an algorithm builds confidence that spills over into offline ties. Prior studies offer support for both, often within a single wave of data.</p><h4>Theoretical framework<b>.</b></h4><p>We draw on the perceived algorithm responsiveness framework, which distinguishes feeling understood by a system from simply receiving relevant content. The distinction matters because understanding is relational: it implies a partner who notices and adjusts.</p><p>Building on this, we propose that perceived responsiveness can satisfy belonging needs in the short term while quietly lowering the motivation to seek those rewards from people.</p>`;
+const BODY2 = `<h4>Method<b>.</b></h4><p>We recruited adult TikTok users through a national online panel and surveyed them three times, six weeks apart. At each wave participants reported how responsive their feed felt, how connected they felt to friends and family, and how much time they spent on the platform each day.</p><p>Perceived responsiveness was measured with an established scale capturing feeling understood, validated and cared for by the feed. Social connectedness was measured with a widely used belonging scale. We estimated random-intercept cross-lagged panel models to separate stable differences between people from changes within each person over time.</p><h4>Results<b>.</b></h4><p>Across the three waves, participants who reported higher perceived algorithm responsiveness at one wave reported slightly lower social connectedness at the next, even after accounting for prior connectedness and time spent on the platform. The reverse path was weaker but also present: lonelier participants came to see their feeds as more responsive over time.</p><div class="fig"><div class="bars"><i style="height:38%"></i><i style="height:52%"></i><i style="height:61%"></i><i style="height:47%"></i><i style="height:70%"></i><i style="height:58%"></i></div><figcaption><b>Figure 2.</b> Cross-lagged associations between perceived responsiveness and social connectedness across three waves (sample data).</figcaption></div><p>These patterns held across age groups and were strongest for participants who used the platform late at night, when other sources of connection were least available.</p><h4>Discussion<b>.</b></h4><p class="pq">Feeling understood by a feed is not nothing, but it is not quite enough.</p><p>Our findings suggest that algorithmic responsiveness behaves like a partial substitute for interpersonal responsiveness. It satisfies something, briefly, while making the harder work of human connection feel less urgent.</p><p>For designers, this points to features that hand people back to one another: prompts to share, reply or reach out, rather than to keep watching. For researchers, it argues for treating algorithms as communicative partners whose effects unfold over weeks, not minutes.</p><h4>Limitations<b>.</b></h4><p>The sample was limited to adult users in the United States, and self-reports of responsiveness may blend perceptions of content quality with perceptions of understanding. Future work should pair surveys with data donations to trace these processes more directly.</p><h4>Conclusion<b>.</b></h4><p>Algorithms are becoming one of the places where people look for the feeling of being known. Understanding when that search supports human connection, and when it quietly replaces it, is a central task for communication research in the years ahead.</p>`;
+const T = 'The lonely algorithm problem<b>:</b> The relationship between algorithmic personalization and social connectedness on TikTok';
+const A = 'Samuel Hardman Taylor &amp; Y. Anthony Chen<span>University of Illinois Chicago · Stanford University</span>';
+const CITE = 'Journal of Computer-Mediated Communication · 2024';
+const WM = '<img class="wm" src="../assets/medialoop-wordmark.svg" alt="medialoop">';
+const foot = (l, n) => `<div class="foot"><span>${l}</span><span class="pn">${n}</span></div>`;
+const WMC = '<div class="wmc" role="img" aria-label="medialoop"></div>';
+const KWL = ['algorithms','loneliness','social connectedness','TikTok','panel study'];
+const ABSTXT = ABS.replace('<strong>Abstract.</strong> ','');
+const B1 = BODY1;
+const B2 = BODY2.split('<h4>Limitations')[0].replace(/<p class="pq">.*?<\/p>/,'').replace(/<div class="fig">[\s\S]*?<\/div><\/div>|<div class="fig">[\s\S]*?<\/figcaption><\/div>/,
+  '<figure class="fig3"><div class="panel"><i style="height:38%"></i><i style="height:52%"></i><i style="height:61%"></i><i style="height:47%"></i><i style="height:70%"></i><i style="height:58%"></i></div><figcaption><b>Figure 2.</b> Cross-lagged associations between perceived responsiveness and social connectedness across three waves (sample data).</figcaption></figure>');
+const fa = (l, n) => `<div class="footA"><span>${l}</span><span>${n}</span></div>`;
+const rh = r => `<div class="rhA">${WM}<span>${r}</span></div>`;
+const AU = 'Samuel Hardman Taylor and Y. Anthony Chen';
+const TAGS = `<div class="tags">${KWL.map(k=>`<span>${k}</span>`).join('')}</div>`;
+const bar = (r, cls) => `<div class="bar ${cls||''}"><canvas class="net" data-mode="glowbar"></canvas>${WMC}<span>${r}</span></div>`;
+const fd = (l, n) => `<div class="footA"><span>${l}</span><span class="pnd">${n}</span></div>`;
+const O = [
+ ['Dark reveal (original)', 'The version you picked: a big rounded deep-blue panel glowing with the net, with the title in off-white at the bottom and a gold eyebrow. Text pages now get a slim dark bar with the wordmark at the top, and a dark page-number dot.',
+  `<div class="page ap dk d1"><div class="pi"><div class="hero"><canvas class="net" data-mode="glow"></canvas>${WMC}<span class="eyebrow">Research article</span><h3 class="title">The lonely algorithm problem<b>.</b></h3><p class="auth">${AU}</p></div><p class="lead">${ABSTXT}</p><div style="margin:2.4cqw 0 3.6cqw">${TAGS}</div><div class="one">${B1}</div>${fd(CITE,1)}</div></div>`,
+  `<div class="page ap dk d1"><div class="pi">${bar('The lonely algorithm problem')}<div class="one">${B2}</div>${fd(AU,2)}</div></div>`]];
+document.getElementById('opts').innerHTML = O.map((o, i) => `<section class="opt"><div class="head"><span class="tag">${i + 1}</span><h2>${o[0]}</h2></div><div class="pair">${o[2]}${o[3]}</div><p>${o[1]}</p></section>`).join('');
+
+const TL = NET_HOLES.tile, SC = NET_HOLES.scale, H = NET_HOLES.holes.map(h => { const pts = []; for (let i = 2; i < h.length; i += 2) pts.push([h[i] / SC, h[i + 1] / SC]);
+  const p = new Path2D(), n = pts.length, m = i => [(pts[i % n][0] + pts[(i + 1) % n][0]) / 2, (pts[i % n][1] + pts[(i + 1) % n][1]) / 2];
+  let q = m(0); p.moveTo(...q); for (let i = 1; i <= n; i++) { const c = pts[i % n], r = m(i); p.quadraticCurveTo(c[0], c[1], r[0], r[1]); } return { cx: h[0] / SC, cy: h[1] / SC, p }; });
+const ss = v => { v = Math.max(0, Math.min(1, v)); return v * v * (3 - 2 * v); };
+function draw() {
+  document.querySelectorAll('canvas.net').forEach((c, j) => {
+    const r = c.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1), W = r.width, Ht = r.height; if (!W || !Ht) return;
+    c.width = Math.round(W * d); c.height = Math.round(Ht * d); const g = c.getContext('2d'); const mode = c.dataset.mode, onBlue = /glow/.test(mode);
+    g.fillStyle = onBlue ? 'rgba(242,238,221,.9)' : '#2c5494';
+    const pageW = c.closest('.page').getBoundingClientRect().width, k = pageW / 1150, ox = -j * 67;
+    for (let ty = -1; ty * TL * k < Ht + TL * k; ty++) for (let tx = -1; tx * TL * k < W + TL * k; tx++) for (const h of H) {
+      const x = ox + (tx * TL + h.cx) * k, y = (ty * TL + h.cy) * k; if (x < -20 || y < -20 || x > W + 20 || y > Ht + 20) continue;
+      const u = x / W, v = y / Ht; let f;
+      if (mode === 'glow') f = ss(1 - Math.hypot((u - .68) * 1.1, (v - .35) * 1.4) / .75);
+      else if (mode === 'glowc') { const dd = Math.hypot((u - .5) * 1.1, (v - .5) * 1.3); f = ss((dd - .3) / .25); }
+      else if (mode === 'glowtop') f = ss(1 - Math.hypot((u - .95) * 1.1, (v + .02) * 1.5) / .62);
+      else if (mode === 'glowbar') f = ss((u - .4) / .25) * ss((.72 - u) / .12);
+      else if (mode === 'glowtop5') f = ss((.55 - v) / .35);
+      if (f < .06) continue; const s = k * .85 * Math.min(1, f * 1.15);
+      g.setTransform(d * s, 0, 0, d * s, d * x, d * y); g.fill(h.p);
+    }
+  });
+}
+let raf = 0; const redraw = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); };
+addEventListener('resize', redraw); (document.fonts ? document.fonts.ready : Promise.resolve()).then(redraw); redraw();
+</script>
