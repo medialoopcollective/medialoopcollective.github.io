@@ -148,9 +148,18 @@ h1.pg{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.04em;line-
 .d5 .hero .title{font-size:6.4cqw;margin:1.6cqw 0 2cqw}
 .d5 .top5{display:flex;justify-content:center;margin-bottom:0}
 .d5 .lead{text-align:center;max-width:86%;margin:0 auto 3.6cqw}
+/* two-column body for the chosen template */
+.d1 .one{column-count:2;column-gap:4cqw;font-size:1.55cqw;line-height:1.55;hyphens:auto}
+.d1 .one h4{font-size:2.05cqw;margin:1.2em 0 .45em}
+.d1 .one h4:first-child{margin-top:0}
+.d1 .hero{min-height:44cqw !important;padding-top:6cqw !important;margin-bottom:3cqw !important}
+.d1 .hero .title{font-size:6.2cqw !important}
+.d1 .lead{font-size:1.8cqw !important}
+.d1 .fig3{break-inside:avoid;margin:.6em 0 1.1em}
+.d1 .fig3 .panel{height:11cqw;padding:1.6cqw 1.8cqw;gap:1cqw}
 </style>
 <div class="wrap">
-  <header class="intro"><h1 class="pg">medialoop paper template: Dark reveal</h1><p>The chosen medialoop publication style. US Letter, one column, Inter, off-black #2F3028 on warm off-white #F9F7F4. Title page: a rounded deep-blue panel with the net, cream wordmark, gold eyebrow, off-white title with a gold full stop. Text pages: a slim dark bar with the wordmark and running title, and dark-circle page numbers. Uses only standard paper parts, so anyone in the group can drop their paper in. Sample text is for layout only.</p></header>
+  <header class="intro"><h1 class="pg">medialoop paper template: Dark reveal</h1><p>The chosen medialoop publication style. US Letter, two columns, Inter, off-black #2F3028 on warm off-white #F9F7F4. Title page: a rounded deep-blue panel with the net, cream wordmark, gold eyebrow, off-white title with a gold full stop. Text pages: a slim dark bar with the wordmark and running title, and dark-circle page numbers. Uses only standard paper parts, so anyone in the group can drop their paper in. Sample text is for layout only.</p></header>
   <div id="opts"></div>
 </div>
 <script src="../assets/net-holes.js"></script>
@@ -173,13 +182,14 @@ const B2 = BODY2.split('<h4>Limitations')[0].replace(/<p class="pq">.*?<\/p>/,''
 const fa = (l, n) => `<div class="footA"><span>${l}</span><span>${n}</span></div>`;
 const rh = r => `<div class="rhA">${WM}<span>${r}</span></div>`;
 const AU = 'Samuel Hardman Taylor and Y. Anthony Chen';
+const B2F = BODY2.replace(/<p class="pq">.*?<\/p>/,'').replace(/<div class="fig">[\s\S]*?<\/figcaption><\/div>/,'<figure class="fig3"><div class="panel"><i style="height:38%"></i><i style="height:52%"></i><i style="height:61%"></i><i style="height:47%"></i><i style="height:70%"></i><i style="height:58%"></i></div><figcaption><b>Figure 2.</b> Cross-lagged associations between perceived responsiveness and social connectedness across three waves (sample data).</figcaption></figure>');
 const TAGS = `<div class="tags">${KWL.map(k=>`<span>${k}</span>`).join('')}</div>`;
 const bar = (r, cls) => `<div class="bar ${cls||''}"><canvas class="net" data-mode="glowbar"></canvas>${WMC}<span>${r}</span></div>`;
 const fd = (l, n) => `<div class="footA"><span>${l}</span><span class="pnd">${n}</span></div>`;
 const O = [
  ['Dark reveal (original)', 'The version you picked: a big rounded deep-blue panel glowing with the net, with the title in off-white at the bottom and a gold eyebrow. Text pages now get a slim dark bar with the wordmark at the top, and a dark page-number dot.',
-  `<div class="page ap dk d1"><div class="pi"><div class="hero"><canvas class="net" data-mode="glow"></canvas>${WMC}<span class="eyebrow">Research article</span><h3 class="title">The lonely algorithm problem<b>.</b></h3><p class="auth">${AU}</p></div><p class="lead">${ABSTXT}</p><div style="margin:2.4cqw 0 3.6cqw">${TAGS}</div><div class="one">${B1}</div>${fd(CITE,1)}</div></div>`,
-  `<div class="page ap dk d1"><div class="pi">${bar('The lonely algorithm problem')}<div class="one">${B2}</div>${fd(AU,2)}</div></div>`]];
+  `<div class="page ap dk d1"><div class="pi"><div class="hero"><canvas class="net" data-mode="glow"></canvas>${WMC}<span class="eyebrow">Research article</span><h3 class="title">The lonely algorithm problem<b>.</b></h3><p class="auth">${AU}</p></div><p class="lead">${ABSTXT}</p><div style="margin:1.8cqw 0 2.8cqw">${TAGS}</div><div class="one">${B1}</div>${fd(CITE,1)}</div></div>`,
+  `<div class="page ap dk d1"><div class="pi">${bar('The lonely algorithm problem')}<div class="one">${B2F}</div>${fd(AU,2)}</div></div>`]];
 document.getElementById('opts').innerHTML = O.map((o, i) => `<section class="opt"><div class="head"><span class="tag">${i + 1}</span><h2>${o[0]}</h2></div><div class="pair">${o[2]}${o[3]}</div><p>${o[1]}</p></section>`).join('');
 
 const TL = NET_HOLES.tile, SC = NET_HOLES.scale, H = NET_HOLES.holes.map(h => { const pts = []; for (let i = 2; i < h.length; i += 2) pts.push([h[i] / SC, h[i + 1] / SC]);
