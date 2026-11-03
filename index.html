@@ -169,9 +169,9 @@ section{padding-block:clamp(90px,16vh,180px)}
 .card canvas.cnet{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 a.card{text-decoration:none}
 .card .go{display:none}
-.card:hover{background-color:var(--gold);background-image:none;color:var(--ink);transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:0 9px 12px -8px #1d386633}   /* turns gold, like before */
+.card:hover{background-color:var(--gold);background-image:none;color:var(--ink);transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:none}   /* turns gold, like before */
 /* every person's card is the same blue, so no one reads as different */
-.card{box-shadow:0 5px 9px -7px #1d386626}
+.card{box-shadow:none}
 .card .c-n{position:absolute;top:clamp(12px,1.3vw,18px);right:clamp(14px,1.5vw,20px);font-size:11px;font-weight:300;letter-spacing:.08em;font-variant-numeric:tabular-nums;opacity:.75;z-index:2}
 .card .c-go{position:absolute;top:clamp(12px,1.3vw,16px);right:clamp(12px,1.3vw,16px);left:auto;z-index:2;opacity:0;transform:translateY(-4px);transition:background .3s,color .3s,opacity .3s,transform .35s;font-size:12px;font-weight:600;padding:.45em .9em;border-radius:99px;background:color-mix(in srgb,currentColor 14%,transparent);transition:background .3s,color .3s}
 .card:hover .c-go,.card:focus-visible .c-go{background:var(--gold);color:var(--ink);opacity:1;transform:none}
@@ -188,7 +188,7 @@ a.card{text-decoration:none}
 .card:nth-child(4){--hx:-8px;--hy:9px;--hr:-2deg}
 .card:nth-child(5){--hx:10px;--hy:-9px;--hr:3.5deg}
 .ph-wrap{position:absolute;left:6%;top:50%;height:74%;aspect-ratio:1;transform:translateY(-50%);
-  filter:drop-shadow(0 14px 20px rgba(20,38,67,.45))}   /* no rim: just a soft shadow */
+  filter:none}   /* no rim: just a soft shadow */
 .photo{width:100%;height:100%;-webkit-mask-size:100% 100%;mask-size:100% 100%}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .card h3{position:relative;margin:0;font-weight:700;font-size:clamp(28px,2.7vw,44px);line-height:.92;letter-spacing:-.034em;text-wrap:balance}
@@ -208,7 +208,7 @@ a.card{text-decoration:none}
 @media (max-width:1000px){.ev-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.ev-cards{grid-template-columns:1fr}}
 .ev{display:flex;flex-direction:column;min-height:clamp(250px,24vw,330px);padding:clamp(20px,2vw,28px);border-radius:clamp(14px,1.4vw,20px);color:var(--cream);
-  background:linear-gradient(165deg,#2c5494 0%,#2c5494 40%,#27508f 72%,#1d3866 100%);box-shadow:0 5px 9px -7px #1d386626;transition:transform .45s cubic-bezier(.2,.7,.2,1),background .35s,color .35s}
+  background:linear-gradient(165deg,#2c5494 0%,#2c5494 40%,#27508f 72%,#1d3866 100%);box-shadow:none;transition:transform .45s cubic-bezier(.2,.7,.2,1),background .35s,color .35s}
 .ev:nth-child(1){--hr:-2deg}.ev:nth-child(2){--hr:1.5deg}.ev:nth-child(3){--hr:-1deg}.ev:nth-child(4){--hr:2deg}
 .ev:hover{transform:translateY(-8px) rotate(var(--hr));background:var(--cream);color:var(--blue)}
 .ev-when{margin:0 0 auto;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
@@ -286,8 +286,8 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 /* "More research": a gold pill button with blue type, set above the background net so it is never covered */
 .more{position:relative;z-index:3;display:inline-flex;align-items:center;margin-top:clamp(28px,4vw,48px);padding:.62em 1.25em .68em;border-radius:999px;
   background:var(--gold);color:var(--blue);font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:-.015em;line-height:1;text-decoration:none;
-  box-shadow:0 3px 7px -4px rgba(29,56,102,0.14);transition:transform .4s cubic-bezier(.3,1.6,.5,1),background .3s,color .3s,box-shadow .3s}
-.more:hover,.more:focus-visible{transform:translateY(-3px) rotate(-1.5deg);background:var(--blue);color:var(--cream);box-shadow:0 4px 8px -4px rgba(29,56,102,0.17)}
+  box-shadow:none;transition:transform .4s cubic-bezier(.3,1.6,.5,1),background .3s,color .3s,box-shadow .3s}
+.more:hover,.more:focus-visible{transform:translateY(-3px) rotate(-1.5deg);background:var(--blue);color:var(--cream);box-shadow:none}
 .more:active{transform:scale(.97)}
 /* menu links answer a tap: the gold dot swells, the word slides and a gold stroke sweeps under it before the menu closes */
 .top nav a{-webkit-tap-highlight-color:transparent}
@@ -304,7 +304,7 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .res-stack{display:grid;gap:clamp(10px,1.6vh,18px);padding-bottom:2vh}
 .res{--strip:clamp(56px,7vh,66px);position:sticky;top:calc(clamp(84px,12vh,120px) + var(--i) * var(--strip));min-height:clamp(260px,36vh,340px);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;
   padding:0 clamp(24px,3vw,44px) clamp(24px,3vw,44px);border-radius:clamp(20px,2vw,32px);text-decoration:none;transform-origin:50% 0;
-  transform:scale(var(--sc,1)) rotate(var(--rot,0deg));transition:box-shadow .4s, filter .3s;box-shadow:0 -3px 9px -7px #1d386622,0 7px 12px -9px #1d38662a}
+  transform:scale(var(--sc,1)) rotate(var(--rot,0deg));transition:box-shadow .4s, filter .3s;box-shadow:none}
 .res > *{position:relative}
 .res canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .r-blue{background:linear-gradient(160deg,#3a6ab6,#2c5494 50%,#1f3f73);color:var(--cream)}
@@ -350,10 +350,10 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 
 /* contact: the Apply card, in the same style as the resource cards */
 .apply{position:relative;z-index:2;overflow:hidden;display:grid;justify-items:start;margin-top:clamp(48px,7vw,96px);padding:clamp(26px,3.4vw,52px);border-radius:clamp(20px,2vw,32px);
-  background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--blue);text-decoration:none;box-shadow:0 7px 12px -9px #1d38662a;transition:transform .5s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
+  background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);color:var(--blue);text-decoration:none;box-shadow:none;transition:transform .5s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
 .apply > *{position:relative}
 .apply canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.apply:hover,.apply:focus-visible{transform:translateY(-6px) rotate(-.8deg);box-shadow:0 10px 13px -8px #1d386633}
+.apply:hover,.apply:focus-visible{transform:translateY(-6px) rotate(-.8deg);box-shadow:none}
 .ap-kind{display:inline-flex;align-items:center;gap:.5em;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .ap-kind::before{content:"";width:.7em;height:.7em;border-radius:52% 46% 50% 48%;background:var(--blue)}
 .ap-h{margin-top:clamp(18px,3vh,32px);padding-bottom:.14em;font-weight:700;font-size:clamp(72px,12vw,200px);line-height:.82;letter-spacing:-.045em}
@@ -1655,7 +1655,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .hm-marq .row{display:flex;width:max-content;will-change:transform}
 .hm-marq .row{touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .hm-marq .row.grabbing{cursor:grabbing}
-.hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(19px,2.15vw,30px);letter-spacing:-.025em;line-height:1.1;box-shadow:0 4px 7px -5px #1d386626}
+.hm-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(19px,2.15vw,30px);letter-spacing:-.025em;line-height:1.1;box-shadow:none}
 .hm-marq .pill.fun{font-weight:300;font-style:italic;letter-spacing:-.01em}
 /* all Inter: every pill gets its own weight (100 to 900), some upright and some italic; a few gold dots sit between words */
 .hm-marq .row{align-items:center}
@@ -1682,7 +1682,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 /* the events title: cream letters on a deep-blue highlighter band, one band per line, tilted a touch, so it stands out on the gold */
 .ev-h{line-height:1.42 !important;rotate:-1.2deg;transform-origin:left center;letter-spacing:-.022em !important;max-width:15ch !important}
 .ev-h .ev-hl{background:linear-gradient(100deg,#2c5494,#1d3866);color:var(--cream);padding:0 .2em .04em;border-radius:.14em .26em .18em .22em;
-  -webkit-box-decoration-break:clone;box-decoration-break:clone;box-shadow:0 5px 9px -7px #1d386633}
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;box-shadow:none}
 </style>
 <script>
 (() => {
@@ -1753,7 +1753,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 <style>
 /* "You can find our email here." as a gold pill that stands out */
 #contact .mail{display:inline-flex;align-items:center;gap:.5em;margin-top:6px;padding:.75em 1.35em;border-radius:999px;text-decoration:none;font-weight:650;font-size:clamp(18px,1.6vw,24px);letter-spacing:-.015em;
-  color:var(--ink);background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);box-shadow:0 5px 9px -6px #1d38662a;transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s}
+  color:var(--ink);background:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e);box-shadow:none;transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s}
 #contact .mail:hover,#contact .mail:focus-visible{transform:translateY(-3px) rotate(-1.5deg);filter:brightness(.95)}
 #contact .mail .glink{background:none !important}
 #contact .mail::after{content:"\2197";font-weight:500}

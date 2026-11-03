@@ -195,8 +195,8 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .p-topics strong{position:relative;display:block;font-weight:700;font-size:clamp(19px,1.95vw,29px);line-height:.98;letter-spacing:-.03em;color:var(--cream);text-wrap:balance;
   font-feature-settings:"ss01","cv05","cv11";transition:color .35s}
 .p-topics strong b{font-weight:700;color:var(--cream);transition:color .35s}
-.p-topics li{box-shadow:0 5px 9px -7px #1d386626}
-.p-topics li:hover{transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:0 9px 12px -8px #1d386633}
+.p-topics li{box-shadow:none}
+.p-topics li:hover{transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:none}
 /* each interest gets a colour from the palette, shuffled fresh on every visit (set in the script) */
 .p-topics li.c-gold{background-image:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e)}
 .p-topics li.c-gold strong{color:var(--ink)}
@@ -279,7 +279,7 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .p-side .back .arr,.p-side .p-links .arr{color:#f2eedd99 !important}
 .p-side .back:hover .arr,.p-side .p-links a:hover .arr{color:var(--gold) !important}
 .p-side .p-hero{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,2.2vh,24px);padding:0}
-.p-side .p-photo-shadow{width:min(64%,250px);filter:drop-shadow(0 18px 22px rgba(10,24,50,.45))}
+.p-side .p-photo-shadow{width:min(64%,250px);filter:none}
 .p-side .p-photo-wrap{width:100%;max-width:none;padding:0;background:none;-webkit-mask-size:100% 100%;mask-size:100% 100%}   /* a cream rim in the photo's own shape */
 .p-side .p-intro h1{font-size:clamp(44px,4.4vw,76px);line-height:.9;letter-spacing:-.045em;color:var(--cream)}   /* big enough to fill the column, one word per line on most screens */
 .p-side .p-role{font-size:clamp(17px,1.35vw,22px);margin-top:clamp(12px,1.8vh,20px)}
@@ -685,7 +685,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .p-marq .row{touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .p-marq .row.grabbing{cursor:grabbing}
 .p-marq .row{align-items:center}
-.p-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(17px,1.7vw,24px);letter-spacing:-.022em;line-height:1.1;box-shadow:0 4px 7px -5px #1d386626;transform-origin:50% 60%}
+.p-marq .pill{flex:none;white-space:nowrap;margin-right:14px;padding:.72em 1.2em;border-radius:26px;font-weight:700;font-size:clamp(17px,1.7vw,24px);letter-spacing:-.022em;line-height:1.1;box-shadow:none;transform-origin:50% 60%}
 .p-marq .pill.it{font-style:italic}
 .p-marq .gdot{flex:none;width:clamp(11px,1vw,15px);height:clamp(11px,1vw,15px);margin:0 18px 0 4px;background:var(--gold);border-radius:52% 46% 50% 48%/50% 54% 46% 50%}
 /* same as the home page: a little wiggle when the cursor passes over a pill */
