@@ -697,7 +697,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 @media (max-width:1000px){.al-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:620px){.al-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .al{margin:0;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:12%;
-  border-radius:52% 48% 46% 54%/50% 54% 46% 50%;box-shadow:0 20px 30px -24px #1d3866aa;transition:transform .5s cubic-bezier(.3,1.5,.5,1),border-radius .6s}
+  border-radius:52% 48% 46% 54%/50% 54% 46% 50%;box-shadow:0 6px 9px -7px #1d38662a;transition:transform .5s cubic-bezier(.3,1.5,.5,1),border-radius .6s}
 .al:nth-child(2){border-radius:46% 54% 55% 45%/55% 45% 52% 48%}.al:nth-child(3){border-radius:55% 45% 48% 52%/46% 56% 44% 54%}.al:nth-child(4){border-radius:48% 52% 54% 46%/52% 46% 54% 48%}.al:nth-child(5){border-radius:56% 44% 50% 50%/48% 55% 45% 52%}
 .al:hover{transform:scale(1.04) rotate(-2deg)}
 .al b{font-weight:700;font-size:clamp(16px,1.6vw,24px);letter-spacing:-.025em;line-height:1.05}
@@ -714,5 +714,22 @@ button,input,select,textarea,optgroup{font-family:inherit}
 @media (hover:none){.al.al-ph figcaption{opacity:1;background:linear-gradient(transparent 50%,#1d3866d9) !important;color:var(--cream) !important;justify-content:flex-end;padding-bottom:14%}}
 .al-lav{background:linear-gradient(160deg,#cfc3dd,#bfb1d2 55%,#a998c0);color:var(--blue)}
 </style>
+<script>
+/* subpages: swipe right (or two-finger swipe right on a trackpad) to slide back to the home page */
+(() => {
+  const home = location.pathname.includes('/people/') ? '../index.html' : 'index.html';
+  const go = () => { document.body.style.transition = 'transform .35s cubic-bezier(.3,.7,.3,1), opacity .35s'; document.body.style.transform = 'translateX(40vw)'; document.body.style.opacity = '0';
+    setTimeout(() => { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back(); else location.href = home; }, 260); };
+  let x0 = null, y0 = 0, t0 = 0;
+  addEventListener('touchstart', e => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); }, { passive: true });
+  addEventListener('touchmove', e => { if (x0 === null) return; const t = e.touches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0);
+    if (dx > 0 && dx > dy * 1.5 && !e.target.closest('.p-marq')) document.body.style.transform = `translateX(${Math.min(dx * .35, 60)}px)`; }, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0); x0 = null;
+    if (dx > 90 && dx > dy * 1.5 && Date.now() - t0 < 800 && !e.target.closest('.p-marq')) go(); else { document.body.style.transition = 'transform .3s'; document.body.style.transform = ''; } });
+  let acc = 0, timer = 0;
+  addEventListener('wheel', e => { if (e.target.closest('.p-marq') || Math.abs(e.deltaX) < Math.abs(e.deltaY) * 1.5) return;
+    acc += -e.deltaX; clearTimeout(timer); timer = setTimeout(() => acc = 0, 250); if (acc > 160) { acc = 0; go(); } }, { passive: true });
+})();
+</script>
 </body>
 </html>

@@ -195,8 +195,8 @@ footer{position:relative;z-index:1;padding-block:clamp(110px,18vh,200px) 40px}
 .p-topics strong{position:relative;display:block;font-weight:700;font-size:clamp(19px,1.95vw,29px);line-height:.98;letter-spacing:-.03em;color:var(--cream);text-wrap:balance;
   font-feature-settings:"ss01","cv05","cv11";transition:color .35s}
 .p-topics strong b{font-weight:700;color:var(--cream);transition:color .35s}
-.p-topics li{box-shadow:0 18px 30px -24px #1d386699}
-.p-topics li:hover{transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:0 30px 40px -26px #1d3866cc}
+.p-topics li{box-shadow:0 5px 9px -7px #1d386626}
+.p-topics li:hover{transform:translate(var(--hx,0),var(--hy,-8px)) rotate(var(--hr,1.5deg));box-shadow:0 9px 12px -8px #1d386633}
 /* each interest gets a colour from the palette, shuffled fresh on every visit (set in the script) */
 .p-topics li.c-gold{background-image:linear-gradient(160deg,#f0bb5f,#e7aa4d 55%,#dc9a3e)}
 .p-topics li.c-gold strong{color:var(--ink)}
@@ -775,5 +775,22 @@ button,input,select,textarea,optgroup{font-family:inherit}
   .pubs a::before{left:-100vw;right:-100vw;background:linear-gradient(180deg,#3a6ab6 0%,#2c5494 45%,#1f3f73 100%) fixed}
 }
 </style>
+<script>
+/* subpages: swipe right (or two-finger swipe right on a trackpad) to slide back to the home page */
+(() => {
+  const home = location.pathname.includes('/people/') ? '../index.html' : 'index.html';
+  const go = () => { document.body.style.transition = 'transform .35s cubic-bezier(.3,.7,.3,1), opacity .35s'; document.body.style.transform = 'translateX(40vw)'; document.body.style.opacity = '0';
+    setTimeout(() => { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back(); else location.href = home; }, 260); };
+  let x0 = null, y0 = 0, t0 = 0;
+  addEventListener('touchstart', e => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); }, { passive: true });
+  addEventListener('touchmove', e => { if (x0 === null) return; const t = e.touches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0);
+    if (dx > 0 && dx > dy * 1.5 && !e.target.closest('.p-marq')) document.body.style.transform = `translateX(${Math.min(dx * .35, 60)}px)`; }, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0); x0 = null;
+    if (dx > 90 && dx > dy * 1.5 && Date.now() - t0 < 800 && !e.target.closest('.p-marq')) go(); else { document.body.style.transition = 'transform .3s'; document.body.style.transform = ''; } });
+  let acc = 0, timer = 0;
+  addEventListener('wheel', e => { if (e.target.closest('.p-marq') || Math.abs(e.deltaX) < Math.abs(e.deltaY) * 1.5) return;
+    acc += -e.deltaX; clearTimeout(timer); timer = setTimeout(() => acc = 0, 250); if (acc > 160) { acc = 0; go(); } }, { passive: true });
+})();
+</script>
 </body>
 </html>
