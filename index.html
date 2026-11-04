@@ -1205,7 +1205,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
   const nz = (x, y, t) => Math.sin(x * 7.1 + t * .31) * .5 + Math.sin(y * 6.3 - t * .27) * .5 + Math.sin((x + y) * 11.7 + t * .4) * .3;
   function cornerF(x, y, a, t) {
     // measured in screen heights on wide screens, in screen widths on tall ones, so the blots stay in the corners on a phone too
-    const u = a >= 1 ? [a, 1] : [1, 1 / a], S = a >= 1 ? 1 : 1.2;
+    const u = a >= 1 ? [a, 1] : [1, 1 / a], S = (a >= 1 ? 1 : 1.2) * 1.45;   // big patches that fill most of the screen around the logo
     // each blot is an irregular, ink-like shape: a few overlapping, stretched and tilted lobes with lumpy edges, plus a small
     // stray splash nearby, so the two patches never read as circles
     const lobe = (cx, cy, rx, ry, rot, i) => { const X0 = (x - cx) * u[0], Y0 = (y - cy) * u[1], c = Math.cos(rot), s = Math.sin(rot);
@@ -1214,9 +1214,9 @@ button,input,select,textarea,optgroup{font-family:inherit}
       return sst((1 - Math.hypot(X, Y) / wob) / .32); };
     const k = a >= 1 ? 1 / a : 1, k2 = a >= 1 ? 1 : a, X = v => v * k, Y = v => v * k2;   // positions as fractions of the shorter side
     const tl = Math.max(lobe(X(.06), Y(.04), .78, .44, .32, 0), lobe(X(.02), Y(.36), .34, .5, -.4, 1), lobe(X(.42), Y(-.02), .42, .24, .12, 2) * .9,
-      lobe(X(.58), Y(.3), .09, .07, .8, 3) * .85);                                            // a stray splash below and right of the main patch
+      lobe(X(.58), Y(.3), .09, .07, .8, 3) * .85, lobe(X(1.05), Y(-.06), .5, .2, -.08, 8) * .85);                                            // a stray splash below and right of the main patch
     const br = Math.max(lobe(1 - X(.05), 1 - Y(.08), .5, .62, -.5, 4), lobe(1 - X(.34), 1 - Y(.02), .36, .22, .25, 5), lobe(1 - X(.02), 1 - Y(.5), .2, .3, .2, 6) * .9,
-      lobe(1 - X(.46), 1 - Y(.36), .07, .1, -.6, 7) * .8);
+      lobe(1 - X(.46), 1 - Y(.36), .07, .1, -.6, 7) * .8, lobe(1 - X(1.0), 1 - Y(-.04), .48, .2, .1, 9) * .85);
     return Math.max(tl, br);
   }
   let lockBox = null;                                          // the logo + tagline, in canvas pixels: the net always stays clear of it
