@@ -116,6 +116,10 @@ On each visit, about one in four people and event cards is quietly picked to lig
 Every piece of text on the site is Inter (loaded from Google Fonts with the full 100–900 weight range); buttons and form fields inherit it too.
 
 
+## AI Disclosure
+This website was coded with the aid of Claude (i.e., Anthropic AI). Copy on the page was brainstormed with Claude, ChatGPT, Google Gemini, Thesaurus.com too, but everything on the page was typically rewritten and rewritten again to make sure that it was accurate and in the voice of medialoop. 
+
+
 ## Card colour schemes
 Resource cards and the Apply card share one scheme per colour, and buttons never change colour while you scroll or hover (they only nudge sideways and deepen slightly):
 - Blue, deep blue, plum: cream type, gold dot, gold button with dark type.
