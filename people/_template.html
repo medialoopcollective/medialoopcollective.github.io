@@ -797,5 +797,15 @@ button,input,select,textarea,optgroup{font-family:inherit}
     acc += -e.deltaX; clearTimeout(timer); timer = setTimeout(() => acc = 0, 250); if (acc > 160) { acc = 0; go(); } }, { passive: true });
 })();
 </script>
+<style>
+/* navigation: a plain gold band from edge to edge of the menu, blue text; shown on hover, keyboard focus and tap only */
+.top nav a .nt{background-size:0 0 !important}
+.top nav a::after{display:none !important}
+.top nav a{margin-inline:-40px;padding-inline:40px;border-radius:0;background:transparent;transition:opacity .4s,transform .5s cubic-bezier(.2,.7,.2,1),background-color 0s}
+.top nav a.tapped,.top nav a:active{transform:none}
+.top nav a:hover,.top nav a:focus-visible,.top nav a.tapped{background:var(--gold);color:var(--blue) !important;outline:none}
+.top nav a:hover::before,.top nav a:focus-visible::before,.top nav a.tapped::before{background:var(--blue);transform:none}
+@media (max-width:760px){.top nav a{margin-inline:-40px;padding-inline:40px}}
+</style>
 </body>
 </html>
