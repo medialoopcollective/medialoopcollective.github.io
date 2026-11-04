@@ -1838,5 +1838,12 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .top nav a:hover::before,.top nav a:focus-visible::before,.top nav a.tapped::before{background:var(--blue);transform:none}
 @media (max-width:760px){.top nav a{margin-inline:-40px;padding-inline:40px}}
 </style>
+<style>
+/* people cards on big screens: two roomy cards per row instead of three small ones */
+@media (min-width:1100px){
+  .people{grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr)) !important}
+  .people .card h3{font-size:clamp(30px,2.5vw,44px) !important}
+}
+</style>
 </body>
 </html>
