@@ -414,7 +414,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
   </section>
 
   <section>
-    <p class="label" data-kicker="Recent work">Selected publications</p>
+    <p class="label" data-kicker="Recent work">A taste of my research</p>
     <ul class="pubs">
       <li><a href="#"><span class="yr">2026</span><span class="ttl"><span class="ttl-main">Publication title goes here</span><span class="meta">Author, A., &amp; Author, B. · Journal name</span></span></a></li>
       <li><a href="#"><span class="yr">2025</span><span class="ttl"><span class="ttl-main">A second publication title</span><span class="meta">Author, A. · Conference proceedings</span></span></a></li>
@@ -774,6 +774,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 @media (min-width:901px){
   .pubs a::before{left:-100vw;right:-100vw;background:linear-gradient(180deg,#3a6ab6 0%,#2c5494 45%,#1f3f73 100%) fixed}
 }
+/* profile publications: gold band with blue text on hover */
+.pubs a::before{background:linear-gradient(100deg,#f0bb5f,#e7aa4d 50%,#dc9a3e) !important}
+.pubs a:hover,.pubs a:focus-visible,.pubs a:hover *,.pubs a:focus-visible *{color:var(--blue) !important}
+.pubs a:hover .arrow,.pubs a:focus-visible .arrow{color:var(--blue) !important}
+.pubs a:not([href]):hover,.pubs a:not([href]):hover *{color:inherit !important}
 </style>
 <script>
 /* subpages: swipe right (or two-finger swipe right on a trackpad) to slide back to the home page */

@@ -432,7 +432,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
   </section>
 
   <section>
-    <p class="label" data-kicker="Recent work">Selected publications</p>
+    <p class="label" data-kicker="Recent work">A taste of my research</p>
     <ul class="pubs">
       <li><a href="https://doi.org/10.1177/20563051261496376" target="_blank" rel="noopener"><span class="yr">2026</span><span class="ttl"><span class="ttl-main">Exploring the predictors and outcomes of perceived algorithm responsiveness in social media feeds: Combining longitudinal and computational methods</span><span class="meta">Taylor, S. H., &amp; Markowitz, D. M. · Social Media + Society</span></span></a></li>
       <li><a href="https://doi.org/10.1177/00936502261459750" target="_blank" rel="noopener"><span class="yr">2026</span><span class="ttl"><span class="ttl-main">When the algorithm understands you (or doesn’t): LGBTQ+ youth’s interaction with algorithmic media and identity formation</span><span class="meta">Chen, Y. A., &amp; Taylor, S. H. · Communication Research</span></span></a></li>
@@ -795,6 +795,11 @@ button,input,select,textarea,optgroup{font-family:inherit}
 @media (min-width:901px){
   .pubs a::before{left:-100vw;right:-100vw;background:linear-gradient(180deg,#3a6ab6 0%,#2c5494 45%,#1f3f73 100%) fixed}
 }
+/* profile publications: gold band with blue text on hover */
+.pubs a::before{background:linear-gradient(100deg,#f0bb5f,#e7aa4d 50%,#dc9a3e) !important}
+.pubs a:hover,.pubs a:focus-visible,.pubs a:hover *,.pubs a:focus-visible *{color:var(--blue) !important}
+.pubs a:hover .arrow,.pubs a:focus-visible .arrow{color:var(--blue) !important}
+.pubs a:not([href]):hover,.pubs a:not([href]):hover *{color:inherit !important}
 </style>
 <script>
 /* subpages: swipe right (or two-finger swipe right on a trackpad) to slide back to the home page */
