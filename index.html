@@ -1205,13 +1205,19 @@ button,input,select,textarea,optgroup{font-family:inherit}
   const nz = (x, y, t) => Math.sin(x * 7.1 + t * .31) * .5 + Math.sin(y * 6.3 - t * .27) * .5 + Math.sin((x + y) * 11.7 + t * .4) * .3;
   function cornerF(x, y, a, t) {
     // measured in screen heights on wide screens, in screen widths on tall ones, so the blots stay in the corners on a phone too
-    const u = a >= 1 ? [a, 1] : [1, 1 / a], R1 = a >= 1 ? .78 : .95, R2 = a >= 1 ? .55 : .75;
-    // each blot is a round, slightly lumpy disc whose centre sits just inside the corner, so its edge reads as a soft circle
-    const blot = (cx, cy, R, i) => { const X = (x - cx) * u[0], Y = (y - cy) * u[1], th = Math.atan2(Y, X);
-      const wob = 1 + .05 * Math.sin(3 * th + t * .23 + i * 2) + .03 * Math.sin(5 * th - t * .17 + i) + .015 * Math.sin(8 * th + t * .3);
-      return sst((1 - Math.hypot(X, Y) / ((R + .03 * Math.sin(t * .35 + i * 2)) * wob)) / .3); };
-    const k = a >= 1 ? 1 / a : 1, k2 = a >= 1 ? 1 : a;   // a small inset from each corner, in screen-height units
-    return Math.max(blot(.1 * k, .1 * k2, R1 * .92, 0), blot(1 - .08 * k, 1 - .08 * k2, R2 * .9, 1));
+    const u = a >= 1 ? [a, 1] : [1, 1 / a], S = a >= 1 ? 1 : 1.2;
+    // each blot is an irregular, ink-like shape: a few overlapping, stretched and tilted lobes with lumpy edges, plus a small
+    // stray splash nearby, so the two patches never read as circles
+    const lobe = (cx, cy, rx, ry, rot, i) => { const X0 = (x - cx) * u[0], Y0 = (y - cy) * u[1], c = Math.cos(rot), s = Math.sin(rot);
+      const X = (X0 * c + Y0 * s) / (rx * S), Y = (-X0 * s + Y0 * c) / (ry * S), th = Math.atan2(Y, X);
+      const wob = 1 + .13 * Math.sin(2 * th + i * 1.7 + t * .19) + .09 * Math.sin(3 * th - i * 2.3 - t * .15) + .05 * Math.sin(5 * th + i + t * .23) + .025 * Math.sin(9 * th - i * .7);
+      return sst((1 - Math.hypot(X, Y) / wob) / .32); };
+    const k = a >= 1 ? 1 / a : 1, k2 = a >= 1 ? 1 : a, X = v => v * k, Y = v => v * k2;   // positions as fractions of the shorter side
+    const tl = Math.max(lobe(X(.06), Y(.04), .78, .44, .32, 0), lobe(X(.02), Y(.36), .34, .5, -.4, 1), lobe(X(.42), Y(-.02), .42, .24, .12, 2) * .9,
+      lobe(X(.58), Y(.3), .09, .07, .8, 3) * .85);                                            // a stray splash below and right of the main patch
+    const br = Math.max(lobe(1 - X(.05), 1 - Y(.08), .5, .62, -.5, 4), lobe(1 - X(.34), 1 - Y(.02), .36, .22, .25, 5), lobe(1 - X(.02), 1 - Y(.5), .2, .3, .2, 6) * .9,
+      lobe(1 - X(.46), 1 - Y(.36), .07, .1, -.6, 7) * .8);
+    return Math.max(tl, br);
   }
   let lockBox = null;                                          // the logo + tagline, in canvas pixels: the net always stays clear of it
   function clearF(px, py) {
