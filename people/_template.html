@@ -823,5 +823,10 @@ button,input,select,textarea,optgroup{font-family:inherit}
 .p-side .p-links a:hover,.p-side .p-links a:focus-visible{background:var(--cream)}
 .p-side .p-links li:nth-child(4n+2) a:hover,.p-side .p-links li:nth-child(4n+2) a:focus-visible{background:var(--gold)}
 </style>
+<style>
+/* pill hover: every pill changes colour (gold ones to cream, the rest to gold) */
+.p-side .p-links li a:hover,.p-side .p-links li a:focus-visible{background:var(--gold) !important}
+.p-side .p-links li:nth-child(4n+1) a:hover,.p-side .p-links li:nth-child(4n+1) a:focus-visible{background:var(--cream) !important}
+</style>
 </body>
 </html>
