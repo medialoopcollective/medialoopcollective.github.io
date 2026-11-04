@@ -75,7 +75,7 @@ html.intro body{touch-action:none}
 #openLock .ol-mark{position:relative;width:100%;aspect-ratio:4278/1185;background:var(--cream);-webkit-mask:url(assets/medialoop-wordmark-nodot.svg) center/contain no-repeat;mask:url(assets/medialoop-wordmark-nodot.svg) center/contain no-repeat}
 #openLock .ol-dot{position:absolute;left:47.751%;top:24.869%;width:3.637%;height:11.527%;fill:var(--gold);overflow:visible;animation:olDot .9s .7s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes olDot{from{opacity:0;transform:translateY(-120%) scale(.4)}}
-#openLock .ol-tag{color:var(--cream);font-weight:300;font-size:clamp(15px,1.7vw,24px);letter-spacing:-.01em;text-transform:none;margin-right:0;opacity:.92;line-height:1;white-space:nowrap;animation:olIn 1.1s .25s cubic-bezier(.2,.8,.2,1) both}
+#openLock .ol-tag{color:var(--cream);font-weight:300;font-size:clamp(15px,1.7vw,24px);letter-spacing:-.01em;text-transform:none;margin-right:0;opacity:1;justify-self:start;text-align:left;margin-top:calc(-1 * clamp(10px,2.2vw,30px));line-height:1;white-space:nowrap;animation:olIn 1.1s .25s cubic-bezier(.2,.8,.2,1) both}
 @keyframes olIn{from{opacity:0;translate:0 14px}}
 @media (max-width:760px){#openLock{width:88vw}}
 html.intro .top,html.intro .hero .lede,html.intro .scroll-cue,html.intro section:not(.hero),html.intro .marquee,html.intro footer{opacity:0}
@@ -1420,7 +1420,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
       const markSrc = heroMark.getAttribute('src'); heroMark.src = markSrc.replace('wordmark.svg', 'wordmark-nodot.svg');   // the logo waits for its dot
       document.body.appendChild(cue);
       const lock = document.createElement('div'); lock.id = 'openLock'; lock.setAttribute('aria-label', 'medialoop, a research boutique');
-      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">Our boutique research collective</div>`;
+      lock.innerHTML = `<div class="ol-wrap"><div class="ol-mark"></div><svg class="ol-dot" viewBox="0 0 155.6 136.6" preserveAspectRatio="none" aria-hidden="true"><path d="${morph(1)}"/></svg></div><div class="ol-tag">A Boutique Research Collective</div>`;
       document.body.appendChild(lock);
       const push = d => { pt = Math.max(.5, clamp(pt + d)); idle = 0; };
       const onWheel = e => push(e.deltaY / (innerHeight * 2.2));
