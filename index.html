@@ -1644,7 +1644,7 @@ button,input,select,textarea,optgroup{font-family:inherit}
 /* people cards: if a long name (like Fathollahian) is wider than the card, shrink that name until it fits */
 (() => { const fit = () => document.querySelectorAll('.people .card h3').forEach(h => { h.style.fontSize = ''; let fs = parseFloat(getComputedStyle(h).fontSize), i = 0;
   const c = h.closest('.card'), over = () => { const r = document.createRange(); r.selectNodeContents(h); return Math.max(...[...r.getClientRects()].map(b => b.right)) > c.getBoundingClientRect().right - 12; };
-  while (over() && fs > 14 && i++ < 40) { fs -= 1; h.style.fontSize = fs + 'px'; } });
+  while (over() && fs > 14 && i++ < 40) { fs -= 1; h.style.setProperty('font-size', fs + 'px', 'important'); } });
   fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit); })();
 </script>
 <style>
@@ -1842,7 +1842,9 @@ button,input,select,textarea,optgroup{font-family:inherit}
 /* people cards on big screens: two roomy cards per row instead of three small ones */
 @media (min-width:1100px){
   .people{grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr)) !important}
-  .people .card h3{font-size:clamp(30px,2.5vw,44px) !important}
+  .people .card h3{font-size:clamp(40px,3.2vw,60px) !important}
+  .people .card{padding-left:47% !important;padding-right:clamp(20px,2vw,32px) !important}
+  .people .ph-wrap{height:54% !important;left:6% !important}
 }
 </style>
 </body>
