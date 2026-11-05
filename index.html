@@ -2,7 +2,7 @@
 <html lang="en" class="intro" data-opener="eye">
 <head>
 <meta charset="utf-8">
-<script>try{if(sessionStorage.getItem("ml-opener-seen"))document.documentElement.classList.remove("intro")}catch(e){}</script>
+<script>try{var r=document.referrer,same=false;try{same=!!r&&new URL(r).origin===location.origin}catch(e){}if(same||(location.hash&&location.hash.length>1))sessionStorage.setItem("ml-opener-seen","1");if(sessionStorage.getItem("ml-opener-seen"))document.documentElement.classList.remove("intro")}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>medialoop</title>
 <meta name="claude:viewport-fit-sides" content="cover">
