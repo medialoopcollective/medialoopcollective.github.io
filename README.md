@@ -125,3 +125,7 @@ Resource cards and the Apply card share one scheme per colour, and buttons never
 - Blue, deep blue, plum: cream type, gold dot, gold button with dark type.
 - Gold: dark type, blue dot, blue button with cream type.
 - Lavender, sage, cream: blue type, blue dot, blue button with cream type.
+
+
+## Search (SEO)
+Each page has a title, description and canonical URL in its `<head>`. Samuel's page also carries Open Graph tags (the photo and bio shown when the link is shared) and a JSON-LD `ProfilePage`/`Person` block (name and other names, job title, UIC, Cornell, photo, and `sameAs` links to his UIC profile, Google Scholar, LinkedIn and samuelhardman.com) so Google can tie them together. The home page has a matching `ResearchOrganization` block. `sitemap.xml` and `robots.txt` sit at the root; update `lastmod` in the sitemap and add new person pages to it when they go up. For a new person page, copy the SEO block from Samuel's page and edit it.
